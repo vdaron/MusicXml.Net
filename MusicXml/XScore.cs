@@ -3,11 +3,11 @@ using MindTouch.Dream;
 
 namespace MusicXml
 {
-	public class XMusic
+	public class XScore
 	{
 		private readonly XDoc theDocument;
 
-		public XMusic(string aFileName)
+		public XScore(string aFileName)
 		{
 			theDocument = XDocFactory.LoadFrom(aFileName, MimeType.XML);
 		}

@@ -1,0 +1,28 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 11.00
+# Visual Studio 2010
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MusicXml", "MusicXML\MusicXml.csproj", "{42ACDD70-26DA-4737-B490-282A21B170E6}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Schemas", "Schemas", "{7A531438-3676-4B0B-AA57-26735FECCBE7}"
+	ProjectSection(SolutionItems) = preProject
+		MusicXml\Schemas\musicxml.xsd = MusicXml\Schemas\musicxml.xsd
+		MusicXml\Schemas\opus.xsd = MusicXml\Schemas\opus.xsd
+		MusicXml\Schemas\xlink.xsd = MusicXml\Schemas\xlink.xsd
+		MusicXml\Schemas\xml.xsd = MusicXml\Schemas\xml.xsd
+	EndProjectSection
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{42ACDD70-26DA-4737-B490-282A21B170E6}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{42ACDD70-26DA-4737-B490-282A21B170E6}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{42ACDD70-26DA-4737-B490-282A21B170E6}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{42ACDD70-26DA-4737-B490-282A21B170E6}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+EndGlobal

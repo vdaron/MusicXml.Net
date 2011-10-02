@@ -1,5 +1,6 @@
 using System.Collections.Generic;
 using MindTouch.Dream;
+using MindTouch.Xml;
 
 namespace MusicXml
 {

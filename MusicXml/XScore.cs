@@ -1,5 +1,6 @@
 using System.Collections.Generic;
 using MindTouch.Dream;
+using MindTouch.Xml;
 
 namespace MusicXml
 {
@@ -10,6 +11,11 @@ namespace MusicXml
 		public XScore(string aFileName)
 		{
 			theDocument = XDocFactory.LoadFrom(aFileName, MimeType.XML);
+		}
+
+		public XScore(XDoc aDocument)
+		{
+			theDocument = aDocument;
 		}
 
 		public string MovementTitle

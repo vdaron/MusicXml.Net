@@ -1,4 +1,5 @@
 using MindTouch.Dream;
+using MindTouch.Xml;
 
 namespace MusicXml
 {

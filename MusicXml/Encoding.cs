@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Text;
 using MindTouch.Dream;
+using MindTouch.Xml;
 
 namespace MusicXml
 {

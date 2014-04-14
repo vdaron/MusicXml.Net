@@ -35,7 +35,7 @@ namespace MusicXml
 		{
 			get
 			{
-				List<Part> parts = new List<Part>();
+				var parts = new List<Part>();
 				foreach (XDoc part in theDocument["part-list/score-part"])
 				{
 					parts.Add(new Part(part));

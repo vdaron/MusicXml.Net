@@ -1,5 +1,4 @@
 using System.Collections.Generic;
-using MindTouch.Dream;
 using MindTouch.Xml;
 
 namespace MusicXml
@@ -23,7 +22,7 @@ namespace MusicXml
 		{
 			get
 			{
-				List<Note> notes = new List<Note>();
+				var notes = new List<Note>();
 				foreach (XDoc note in theDocument["note"])
 				{
 					notes.Add(new Note(note));
@@ -38,7 +37,7 @@ namespace MusicXml
 			{
 				if (theAttributes == null)
 				{
-					XDoc attributes = theDocument["attributes"];
+					var attributes = theDocument["attributes"];
 					if (!attributes.IsEmpty)
 					{
 						theAttributes = new MeasureAttributes(attributes);

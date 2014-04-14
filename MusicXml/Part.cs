@@ -1,5 +1,4 @@
 using System.Collections.Generic;
-using MindTouch.Dream;
 using MindTouch.Xml;
 
 namespace MusicXml
@@ -27,7 +26,7 @@ namespace MusicXml
 		{
 			get
 			{
-				List<Measure> measures = new List<Measure>();
+				var measures = new List<Measure>();
 				foreach (XDoc measure in theDocument["//part[@id='" + Id + "']/measure"])
 				{
 					measures.Add(new Measure(measure));

@@ -1,5 +1,4 @@
 using System;
-using MindTouch.Dream;
 using MindTouch.Xml;
 
 namespace MusicXml
@@ -29,7 +28,7 @@ namespace MusicXml
 		{
 			get
 			{
-				XDoc lyric = theDocument["lyric"];
+				var lyric = theDocument["lyric"];
 				return lyric.IsEmpty ? null : new Lyric(lyric);
 			}
 		}
@@ -37,7 +36,7 @@ namespace MusicXml
 		{
 			get
 			{
-				XDoc pitch = theDocument["pitch"];
+				var pitch = theDocument["pitch"];
 				return pitch.IsEmpty ? null : new Pitch(pitch);
 			}
 		}

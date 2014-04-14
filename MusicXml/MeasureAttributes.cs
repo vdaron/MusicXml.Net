@@ -1,4 +1,3 @@
-using MindTouch.Dream;
 using MindTouch.Xml;
 
 namespace MusicXml
@@ -19,7 +18,7 @@ namespace MusicXml
 		{
 			get
 			{
-				XDoc key = theDocument["key"];
+				var key = theDocument["key"];
 				return key.IsEmpty ? null : new Key(key);
 			}
 		}
@@ -27,7 +26,7 @@ namespace MusicXml
 		{
 			get
 			{
-				XDoc time = theDocument["time"];
+				var time = theDocument["time"];
 				return time.IsEmpty ? null : new Time(time);
 			}
 		}
@@ -35,7 +34,7 @@ namespace MusicXml
 		{
 			get
 			{
-				XDoc clef = theDocument["clef"];
+				var clef = theDocument["clef"];
 				return clef.IsEmpty ? null : new Clef(clef);
 			}
 		}

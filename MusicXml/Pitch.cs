@@ -1,15 +1,7 @@
-using MindTouch.Dream;
 using MindTouch.Xml;
 
 namespace MusicXml
 {
-	/// <summary>
-		  //<pitch>
-		  //  <step>C</step>
-		  //  <alter>1</alter>
-		  //  <octave>4</octave>
-		  //</pitch>
-	/// </summary>
 	public class Pitch
 	{
 		private readonly XDoc theDocument;

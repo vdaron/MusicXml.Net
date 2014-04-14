@@ -40,5 +40,13 @@ namespace MusicXml
 				return pitch.IsEmpty ? null : new Pitch(pitch);
 			}
 		}
+
+		public int Staff
+		{
+			get 
+			{
+				return theDocument["staff"].AsInt ?? -1;
+			}
+		}
 	}
 }

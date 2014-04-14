@@ -18,7 +18,7 @@ namespace MusicXml
 			get { return theDocument["@width"].AsInt ?? -1; }
 		}
 
-		public IEnumerable<Note> Notes
+		public List<Note> Notes
 		{
 			get
 			{

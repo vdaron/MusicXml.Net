@@ -1,6 +1,6 @@
 ﻿
-Microsoft Visual Studio Solution File, Format Version 11.00
-# Visual Studio 2010
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 2012
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MusicXml", "MusicXML\MusicXml.csproj", "{42ACDD70-26DA-4737-B490-282A21B170E6}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Schemas", "Schemas", "{7A531438-3676-4B0B-AA57-26735FECCBE7}"
@@ -10,6 +10,8 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Schemas", "Schemas", "{7A53
 		MusicXml\Schemas\xlink.xsd = MusicXml\Schemas\xlink.xsd
 		MusicXml\Schemas\xml.xsd = MusicXml\Schemas\xml.xsd
 	EndProjectSection
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MusicXml.Unit.Tests", "MusicXml.Unit.Tests\MusicXml.Unit.Tests.csproj", "{CF6E7B21-CEAD-4048-A384-3C9EBBD0CB4A}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -21,6 +23,10 @@ Global
 		{42ACDD70-26DA-4737-B490-282A21B170E6}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{42ACDD70-26DA-4737-B490-282A21B170E6}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{42ACDD70-26DA-4737-B490-282A21B170E6}.Release|Any CPU.Build.0 = Release|Any CPU
+		{CF6E7B21-CEAD-4048-A384-3C9EBBD0CB4A}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{CF6E7B21-CEAD-4048-A384-3C9EBBD0CB4A}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{CF6E7B21-CEAD-4048-A384-3C9EBBD0CB4A}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{CF6E7B21-CEAD-4048-A384-3C9EBBD0CB4A}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

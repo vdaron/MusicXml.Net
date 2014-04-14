@@ -22,7 +22,7 @@ namespace MusicXml
 			get { return theDocument["part-name"].AsText; }
 		}
 
-		public IEnumerable<Measure> Measures
+		public List<Measure> Measures
 		{
 			get
 			{

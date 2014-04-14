@@ -15,11 +15,11 @@ namespace MusicXml.Unit.Tests
 
 			var score = new XScore("TestData/MusicXmlWithStaffValues.xml");
 			
-			var firstPart = score.Parts[knownPartWithStaffTags];
-			var fifthMeasure = firstPart.Measures[knownMeasureWithStaffTags];
-			var firstNote = fifthMeasure.Notes[firstNoteIndex];
+			var part = score.Parts[knownPartWithStaffTags];
+			var measure = part.Measures[knownMeasureWithStaffTags];
+			var note = measure.Notes[firstNoteIndex];
 
-			Assert.That(firstNote.Staff, Is.EqualTo(knownStaffValue));
+			Assert.That(note.Staff, Is.EqualTo(knownStaffValue));
 		}
     }
 }

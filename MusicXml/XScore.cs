@@ -31,12 +31,12 @@ namespace MusicXml
 			}
 		}
 
-		public IEnumerable<Part> Parts
+		public List<Part> Parts
 		{
 			get
 			{
-				List<Part> parts = new List<Part>();
-				foreach (XDoc part in theDocument["part-list/score-part"])
+				var parts = new List<Part>();
+				foreach (var part in theDocument["part-list/score-part"])
 				{
 					parts.Add(new Part(part));
 				}

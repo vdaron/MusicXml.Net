@@ -1,7 +1,5 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.Text;
-using MindTouch.Dream;
 using MindTouch.Xml;
 
 namespace MusicXml
@@ -25,7 +23,7 @@ namespace MusicXml
 		{
 			get
 			{
-				StringBuilder result = new StringBuilder();
+				var result = new StringBuilder();
 				theDocument["software"].ForEach(x => result.AppendLine(x.AsText));
 				return result.ToString();
 			}
@@ -35,7 +33,7 @@ namespace MusicXml
 		{
 			get
 			{
-				StringBuilder result = new StringBuilder();
+				var result = new StringBuilder();
 				theDocument["encoding-description"].ForEach(x => result.AppendLine(x.AsText));
 				return result.ToString();
 			}

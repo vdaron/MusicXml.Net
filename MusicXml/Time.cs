@@ -1,5 +1,4 @@
 using System;
-using MindTouch.Dream;
 using MindTouch.Xml;
 
 namespace MusicXml
@@ -29,7 +28,7 @@ namespace MusicXml
 		{
 			get
 			{
-				TimeSymbol symbol = TimeSymbol.Normal;
+				var symbol = TimeSymbol.Normal;
 				switch(theDocument["@symbol"].AsText)
 				{
 					case "common":

@@ -5,13 +5,48 @@ namespace MusicXml.Unit.Tests
 	[TestFixture]
     public class XScoreTests
     {
+		private XScore _scoreWithStaffValues;
+
+		[TestFixtureSetUp]
+		public void SetUp()
+		{
+			_scoreWithStaffValues = new XScore("TestData/MusicXmlWithStaffValues.xml");
+		}
+
 		[Test]
 		public void Populates_movement_title()
 		{
-			var score = new XScore("TestData/MusicXmlWithStaffValues.xml");
-			
 			const string knownMovementTitle = "Im wunderschönen Monat Mai";
-			Assert.That(score.MovementTitle, Is.EqualTo(knownMovementTitle));
+			Assert.That(_scoreWithStaffValues.MovementTitle, Is.EqualTo(knownMovementTitle));
+		}
+
+		[Test]
+		public void Identification_is_not_null()
+		{
+			Assert.That(_scoreWithStaffValues.Identification, Is.Not.Null);
+		}
+
+		[Test]
+		public void Populates_identification_composer()
+		{
+			const string knownComposer = "Robert Schumann";
+
+			Assert.That(_scoreWithStaffValues.Identification.Composer, Is.EqualTo(knownComposer));
+		}
+
+		[Test]
+		public void Populates_identification_rights()
+		{
+			var score = new XScore("TestData/MusicXmlWithStaffValues.xml");
+
+			const string knownRights = "Copyright © 2002 Recordare LLC";
+			Assert.That(score.Identification.Rights, Is.EqualTo(knownRights));
+		}
+
+		[Test]
+		public void Identification_encoding_is_not_null()
+		{
+			Assert.That(_scoreWithStaffValues.Identification.Encoding, Is.Not.Null);
 		}
 
 		[Test]

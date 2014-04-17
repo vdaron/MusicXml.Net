@@ -9,7 +9,7 @@ namespace MusicXml
 	public class XScore
 	{
 		private readonly XDoc theDocument;
-		private XmlDocument _document;
+		private readonly XmlDocument _document;
 
 		public XScore(string aFileName)
 		{
@@ -39,12 +39,8 @@ namespace MusicXml
 		{
 			get
 			{
-				var selectSingleNode = _document.SelectSingleNode("score-partwise/movement-title");
-				if (selectSingleNode != null)
-				{
-					return selectSingleNode.InnerText;
-				}
-				return string.Empty;
+				var movementTitleNode = _document.SelectSingleNode("score-partwise/movement-title");
+				return movementTitleNode != null ? movementTitleNode.InnerText : string.Empty;
 			}
 		}
 
@@ -52,7 +48,8 @@ namespace MusicXml
 		{
 			get
 			{
-				return new Identification(theDocument["identification"]);
+				var identificationNode = _document.SelectSingleNode("score-partwise/identification");
+				return new Identification(identificationNode, theDocument["identification"]);
 			}
 		}
 

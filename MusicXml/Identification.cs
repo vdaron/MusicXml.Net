@@ -1,14 +1,17 @@
 using System;
+using System.Xml;
 using MindTouch.Xml;
 
 namespace MusicXml
 {
 	public class Identification
 	{
+		private readonly XmlNode _node;
 		private readonly XDoc theDocument;
 
-		internal Identification(XDoc aDocument)
+		internal Identification(XmlNode node, XDoc aDocument)
 		{
+			_node = node;
 			theDocument = aDocument;
 		}
 
@@ -16,7 +19,8 @@ namespace MusicXml
 		{
 			get
 			{
-				return theDocument["creator[@type='composer']"].AsText ?? String.Empty;
+				var composerNode = _node.SelectSingleNode("creator[@type='composer']");
+				return composerNode != null ? composerNode.InnerText : string.Empty;
 			}
 		}
 
@@ -24,7 +28,8 @@ namespace MusicXml
 		{
 			get
 			{
-				return theDocument["rights"].AsText ?? String.Empty;
+				var rightsNode = _node.SelectSingleNode("rights");
+				return rightsNode != null ? rightsNode.InnerText : string.Empty;
 			}
 		}
 

@@ -48,5 +48,19 @@ namespace MusicXml
 				return theDocument["staff"].AsInt ?? -1;
 			}
 		}
+
+		public bool IsChordTone
+		{
+			get
+			{
+				var chordTag = theDocument["chord"];
+				
+				if (chordTag.AsText != null)
+				{
+					return true;
+				}
+				return false;
+			}
+		}
 	}
 }

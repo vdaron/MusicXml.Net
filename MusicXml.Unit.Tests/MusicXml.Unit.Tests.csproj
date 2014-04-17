@@ -56,6 +56,10 @@
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
+    <Content Include="TestData\MusicXmlWithChords.xml">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+      <SubType>Designer</SubType>
+    </Content>
     <Content Include="TestData\MusicXmlWithStaffValues.xml">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>

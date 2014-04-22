@@ -15,6 +15,8 @@
 			<software>Finale 2011 for Windows</software>
 			<software>Dolet 6.0 for Finale</software>
 			<encoding-date>2011-08-08</encoding-date>
+			<encoding-description>This is a sample description</encoding-description>
+			<encoding-description>across multiple lines</encoding-description>
 			<supports attribute="new-system" element="print" type="yes" value="yes"/>
 			<supports attribute="new-page" element="print" type="yes" value="yes"/>
 		</encoding>

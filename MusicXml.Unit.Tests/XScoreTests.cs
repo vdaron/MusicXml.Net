@@ -1,4 +1,5 @@
-﻿using NUnit.Framework;
+﻿using System;
+using NUnit.Framework;
 
 namespace MusicXml.Unit.Tests
 {
@@ -37,16 +38,29 @@ namespace MusicXml.Unit.Tests
 		[Test]
 		public void Populates_identification_rights()
 		{
-			var score = new XScore("TestData/MusicXmlWithStaffValues.xml");
-
 			const string knownRights = "Copyright © 2002 Recordare LLC";
-			Assert.That(score.Identification.Rights, Is.EqualTo(knownRights));
+			Assert.That(_scoreWithStaffValues.Identification.Rights, Is.EqualTo(knownRights));
 		}
 
 		[Test]
 		public void Identification_encoding_is_not_null()
 		{
 			Assert.That(_scoreWithStaffValues.Identification.Encoding, Is.Not.Null);
+		}
+
+		[Test]
+		public void Populates_encoding_description()
+		{
+			const string knownEncodingDescription = "This is a sample description\r\nacross multiple lines\r\n";
+
+			Assert.That(_scoreWithStaffValues.Identification.Encoding.Description, Is.EqualTo(knownEncodingDescription));
+		}
+
+		[Test, Ignore]
+		public void Populates_encoding_date()
+		{
+			var knownEncodingDate = new DateTime();
+			Assert.That(_scoreWithStaffValues.Identification.Encoding.EncodingDate, Is.EqualTo(knownEncodingDate));
 		}
 
 		[Test]

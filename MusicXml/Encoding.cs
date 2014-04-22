@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Text;
+using System.Xml;
 using MindTouch.Xml;
 
 namespace MusicXml
@@ -12,10 +13,12 @@ namespace MusicXml
 	/// </summary>
 	public class Encoding
 	{
+		private readonly XmlNode _xmlNode;
 		private readonly XDoc theDocument;
 
-		internal Encoding(XDoc doc)
+		internal Encoding(XmlNode xmlNode, XDoc doc)
 		{
+			_xmlNode = xmlNode;
 			theDocument = doc;
 		}
 
@@ -34,7 +37,17 @@ namespace MusicXml
 			get
 			{
 				var result = new StringBuilder();
-				theDocument["encoding-description"].ForEach(x => result.AppendLine(x.AsText));
+				
+				var encodingDescriptionNodes = _xmlNode.SelectNodes("encoding-description");
+
+				if (encodingDescriptionNodes != null)
+				{
+					foreach (XmlNode node in encodingDescriptionNodes)
+					{
+						result.AppendLine(node.InnerText);
+					}
+				}
+				
 				return result.ToString();
 			}
 		}

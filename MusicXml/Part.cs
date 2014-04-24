@@ -23,13 +23,19 @@ namespace MusicXml
 					return null;
 
 				return _partNode.Attributes["id"].InnerText;
-				//return theDocument["@id"].AsText;
 			}
 		}
 
 		public string Name
 		{
-			get { return theDocument["part-name"].AsText; }
+			get
+			{
+				var partNameNode = _partNode.SelectSingleNode("part-name");
+				if (partNameNode == null)
+					return null;
+
+				return partNameNode.InnerText;
+			}
 		}
 
 		public List<Measure> Measures

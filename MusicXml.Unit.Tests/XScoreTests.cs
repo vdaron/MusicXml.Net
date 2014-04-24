@@ -65,6 +65,14 @@ namespace MusicXml.Unit.Tests
 		}
 
 		[Test]
+		public void Populates_encoding_software()
+		{
+			const string knownEncodingSoftware = "Finale 2011 for Windows\r\nDolet 6.0 for Finale\r\n";
+
+			Assert.That(_scoreWithStaffValues.Identification.Encoding.Software, Is.EqualTo(knownEncodingSoftware));
+		}
+
+		[Test]
 		public void Populates_note_staff()
 		{
 			const int knownStaffValue = 1;

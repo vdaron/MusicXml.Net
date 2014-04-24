@@ -38,7 +38,7 @@ namespace MusicXml
 			get
 			{
 				var encodingNode = _node.SelectSingleNode("encoding");
-				return new Encoding(encodingNode, theDocument["encoding"]);
+				return new Encoding(encodingNode);
 			}
 		}
 	}

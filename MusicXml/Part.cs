@@ -17,7 +17,14 @@ namespace MusicXml
 
 		public string Id
 		{
-			get { return theDocument["@id"].AsText; }
+			get
+			{
+				if (_partNode.Attributes == null)
+					return null;
+
+				return _partNode.Attributes["id"].InnerText;
+				//return theDocument["@id"].AsText;
+			}
 		}
 
 		public string Name

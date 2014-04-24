@@ -86,6 +86,15 @@ namespace MusicXml.Unit.Tests
 		}
 
 		[Test]
+		public void Populates_part_id()
+		{
+			const string knownPartId = "P1";
+			var firstPart = _scoreWithStaffValues.Parts[0];
+
+			Assert.That(firstPart.Id, Is.EqualTo(knownPartId));
+		}
+
+		[Test]
 		public void Populates_note_staff()
 		{
 			const int knownStaffValue = 1;

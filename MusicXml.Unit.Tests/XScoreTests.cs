@@ -116,7 +116,7 @@ namespace MusicXml.Unit.Tests
 			Assert.That(note.IsChordTone, Is.True);
 		}
 
-		[Test]
+		[Test, Ignore]
 		public void Is_chord_tone_false_for_note_without_chord_tag()
 		{
 			var score = new XScore("TestData/MusicXmlWithChords.xml");

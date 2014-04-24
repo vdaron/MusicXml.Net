@@ -1,4 +1,5 @@
 using System.Collections.Generic;
+using System.Xml;
 using MindTouch.Xml;
 
 namespace MusicXml
@@ -6,10 +7,12 @@ namespace MusicXml
 	public class Part
 	{
 		private readonly XDoc theDocument;
+		private readonly XmlNode _partNode;
 
-		internal Part(XDoc aDocument)
+		internal Part(XDoc aDocument, XmlNode partNode)
 		{
 			theDocument = aDocument;
+			_partNode = partNode;
 		}
 
 		public string Id

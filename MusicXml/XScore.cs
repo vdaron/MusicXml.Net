@@ -58,10 +58,16 @@ namespace MusicXml
 			get
 			{
 				var parts = new List<Part>();
+
+				var partNodes = _document.SelectNodes("score-partwise/part-list/score-part");
+				var counter = 0;
+
 				foreach (var part in theDocument["part-list/score-part"])
 				{
-					parts.Add(new Part(part));
+					parts.Add(new Part(part, partNodes[counter]));
+					counter++;
 				}
+
 				return parts;
 			}
 		}

@@ -56,10 +56,11 @@ namespace MusicXml.Unit.Tests
 			Assert.That(_scoreWithStaffValues.Identification.Encoding.Description, Is.EqualTo(knownEncodingDescription));
 		}
 
-		[Test, Ignore]
+		[Test]
 		public void Populates_encoding_date()
 		{
-			var knownEncodingDate = new DateTime();
+			var knownEncodingDate = new DateTime(2011, 08, 08, 4, 0, 0);
+
 			Assert.That(_scoreWithStaffValues.Identification.Encoding.EncodingDate, Is.EqualTo(knownEncodingDate));
 		}
 

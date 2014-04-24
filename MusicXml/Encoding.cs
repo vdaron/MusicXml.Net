@@ -54,7 +54,17 @@ namespace MusicXml
 
 		public DateTime? EncodingDate
 		{
-			get { return theDocument["encoding-date"].AsDate; }
+			get
+			{
+				var encodingDate = _xmlNode.SelectSingleNode("encoding-date");
+
+				if (encodingDate == null)
+				{
+					return null;
+				}
+
+				return Convert.ToDateTime(encodingDate.InnerText);
+			}
 		}
 	}
 }

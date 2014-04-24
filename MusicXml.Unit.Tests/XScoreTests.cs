@@ -59,7 +59,7 @@ namespace MusicXml.Unit.Tests
 		[Test]
 		public void Populates_encoding_date()
 		{
-			var knownEncodingDate = new DateTime(2011, 08, 08, 4, 0, 0);
+			var knownEncodingDate = new DateTime(2011, 08, 08);
 
 			Assert.That(_scoreWithStaffValues.Identification.Encoding.EncodingDate, Is.EqualTo(knownEncodingDate));
 		}

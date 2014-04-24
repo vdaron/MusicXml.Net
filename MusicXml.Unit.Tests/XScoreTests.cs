@@ -106,9 +106,19 @@ namespace MusicXml.Unit.Tests
 		[Test]
 		public void Part_measures_is_not_null()
 		{
-			var firstPart = _scoreWithStaffValues.Parts[0];
+			var part = _scoreWithStaffValues.Parts[0];
 
-			Assert.That(firstPart.Measures, Is.Not.Null);
+			Assert.That(part.Measures, Is.Not.Null);
+		}
+
+		[Test]
+		public void Part_contains_correct_number_of_measures()
+		{
+			var part = _scoreWithStaffValues.Parts[0];
+
+			const int knownMeasuresCount = 27;
+
+			Assert.That(part.Measures.Count, Is.EqualTo(knownMeasuresCount));
 		}
 
 		[Test]

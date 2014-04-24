@@ -1,3 +1,4 @@
+using System;
 using System.Collections.Generic;
 using System.Xml;
 using MindTouch.Xml;
@@ -18,7 +19,13 @@ namespace MusicXml
 
 		public int Width
 		{
-			get { return theDocument["@width"].AsInt ?? -1; }
+			get
+			{
+				if (_measureNode.Attributes == null)
+					return -1;
+
+				return Convert.ToInt32(_measureNode.Attributes["width"].InnerText);
+			}
 		}
 
 		public List<Note> Notes

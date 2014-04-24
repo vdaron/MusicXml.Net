@@ -138,6 +138,17 @@ namespace MusicXml.Unit.Tests
 			Assert.That(note.Staff, Is.EqualTo(knownStaffValue));
 		}
 
+		[Test]
+		public void Populates_measure_width()
+		{
+			var part = _scoreWithStaffValues.Parts[0];
+			var measure = part.Measures[0];
+
+			const int knownWidth = 198;
+
+			Assert.That(measure.Width, Is.EqualTo(knownWidth));
+		}
+
 		[Test, Ignore]
 		public void Is_chord_tone_true_for_note_with_chord_tag()
 		{

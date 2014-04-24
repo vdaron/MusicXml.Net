@@ -73,6 +73,19 @@ namespace MusicXml.Unit.Tests
 		}
 
 		[Test]
+		public void Parts_is_not_null()
+		{
+			Assert.That(_scoreWithStaffValues.Parts, Is.Not.Null);
+		}
+
+		[Test]
+		public void Parts_contains_correct_number_of_parts()
+		{
+			const int knownNumberOfParts = 2;
+			Assert.That(_scoreWithStaffValues.Parts.Count, Is.EqualTo(knownNumberOfParts));
+		}
+
+		[Test]
 		public void Populates_note_staff()
 		{
 			const int knownStaffValue = 1;

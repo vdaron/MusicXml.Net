@@ -1,18 +1,14 @@
-using System;
 using System.Xml;
-using MindTouch.Xml;
 
 namespace MusicXml
 {
 	public class Identification
 	{
 		private readonly XmlNode _node;
-		private readonly XDoc theDocument;
 
-		internal Identification(XmlNode node, XDoc aDocument)
+		internal Identification(XmlNode node)
 		{
 			_node = node;
-			theDocument = aDocument;
 		}
 
 		public string Composer

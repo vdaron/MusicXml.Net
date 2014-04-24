@@ -49,7 +49,7 @@ namespace MusicXml
 			get
 			{
 				var identificationNode = _document.SelectSingleNode("score-partwise/identification");
-				return new Identification(identificationNode, theDocument["identification"]);
+				return new Identification(identificationNode);
 			}
 		}
 

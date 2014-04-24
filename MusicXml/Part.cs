@@ -43,10 +43,18 @@ namespace MusicXml
 			get
 			{
 				var measures = new List<Measure>();
-				foreach (XDoc measure in theDocument["//part[@id='" + Id + "']/measure"])
+
+				var measuresXpath = "//part[@id='" + Id + "']/measure";
+
+				var measureNodes = _partNode.SelectNodes(measuresXpath);
+				var counter = 0;
+
+				foreach (var measure in theDocument[measuresXpath])
 				{
-					measures.Add(new Measure(measure));
+					measures.Add(new Measure(measure, measureNodes[counter]));
+					counter++;
 				}
+
 				return measures;
 			}
 		}

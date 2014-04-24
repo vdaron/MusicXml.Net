@@ -1,4 +1,5 @@
 using System.Collections.Generic;
+using System.Xml;
 using MindTouch.Xml;
 
 namespace MusicXml
@@ -6,11 +7,13 @@ namespace MusicXml
 	public class Measure
 	{
 		private readonly XDoc theDocument;
+		private readonly XmlNode _measureNode;
 		private MeasureAttributes theAttributes;
 
-		internal Measure(XDoc aDocument)
+		internal Measure(XDoc aDocument, XmlNode measureNode)
 		{
 			theDocument = aDocument;
+			_measureNode = measureNode;
 		}
 
 		public int Width

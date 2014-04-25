@@ -9,7 +9,6 @@ namespace MusicXml
 	{
 		private readonly XDoc theDocument;
 		private readonly XmlNode _measureNode;
-		private MeasureAttributes theAttributes;
 
 		internal Measure(XDoc aDocument, XmlNode measureNode)
 		{
@@ -45,17 +44,9 @@ namespace MusicXml
 		{
 			get
 			{
-				if (theAttributes == null)
-				{
-					var attributes = theDocument["attributes"];
-					var attributesNode = _measureNode.SelectSingleNode("attributes");
+				var attributesNode = _measureNode.SelectSingleNode("attributes");
 
-					if (!attributes.IsEmpty)
-					{
-						theAttributes = new MeasureAttributes(attributes, attributesNode);
-					}
-				}
-				return theAttributes;
+				return attributesNode == null ? null : new MeasureAttributes(attributesNode);
 			}
 		}
 	}

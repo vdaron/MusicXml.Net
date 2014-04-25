@@ -1,22 +1,19 @@
 using System;
 using System.Xml;
-using MindTouch.Xml;
 
 namespace MusicXml
 {
 	public enum TimeSymbol
 	{
-		Normal,Common, Cut, SingleNumber
+		Normal, Common, Cut, SingleNumber
 	}
 
 	public class Time
 	{
-		private readonly XDoc theDocument;
 		private readonly XmlNode _timeNode;
 
-		internal Time(XDoc aDocument, XmlNode timeNode)
+		internal Time(XmlNode timeNode)
 		{
-			theDocument = aDocument;
 			_timeNode = timeNode;
 		}
 
@@ -42,18 +39,28 @@ namespace MusicXml
 			get
 			{
 				var symbol = TimeSymbol.Normal;
-				switch(theDocument["@symbol"].AsText)
+
+				if (_timeNode.Attributes != null)
 				{
-					case "common":
-						symbol = TimeSymbol.Common;
-						break;
-					case "cut":
-						symbol = TimeSymbol.Cut;
-						break;
-					case "single-number":
-						symbol = TimeSymbol.SingleNumber;
-						break;
+					var symbolAttribute = _timeNode.Attributes["symbol"];
+
+					if (symbolAttribute != null)
+					{
+						switch (symbolAttribute.InnerText)
+						{
+							case "common":
+								symbol = TimeSymbol.Common;
+								break;
+							case "cut":
+								symbol = TimeSymbol.Cut;
+								break;
+							case "single-number":
+								symbol = TimeSymbol.SingleNumber;
+								break;
+						}
+					}
 				}
+				
 				return symbol;
 			}
 		}

@@ -272,6 +272,18 @@ namespace MusicXml.Unit.Tests
 
 			Assert.That(time.Mode, Is.EqualTo(knownTimeMode));
 		}
+
+		[Test]
+		public void Populates_time_symbol()
+		{
+			var part = _scoreWithStaffValues.Parts[0];
+
+			var measure = part.Measures[0];
+
+			var time = measure.Attributes.Time;
+
+			Assert.That(time.Symbol, Is.EqualTo(TimeSymbol.Normal));
+		}
 		
 		[Test]
 		public void Populates_note_staff()

@@ -52,7 +52,8 @@ namespace MusicXml
 			get
 			{
 				var pitch = theDocument["pitch"];
-				return pitch.IsEmpty ? null : new Pitch(pitch);
+				var pitchNode = _noteNode.SelectSingleNode("pitch");
+				return pitch.IsEmpty ? null : new Pitch(pitch, pitchNode);
 			}
 		}
 

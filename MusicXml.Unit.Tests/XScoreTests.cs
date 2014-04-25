@@ -380,5 +380,34 @@ namespace MusicXml.Unit.Tests
 
 			Assert.That(note.IsChordTone, Is.False);
 		}
-    }
+
+		[Test]
+		public void Note_pitch_is_not_null()
+		{
+			const int measureContainingNotesWithPitches = 4;
+			const int noteWithPitchTag = 3;
+
+			var part = _scoreWithStaffValues.Parts[0];
+			var measure = part.Measures[measureContainingNotesWithPitches];
+			var note = measure.Notes[noteWithPitchTag];
+
+			Assert.That(note.Pitch, Is.Not.Null);
+		}
+
+		[Test]
+		public void Populates_note_pitch_alter()
+		{
+			const int measureContainingNotesWithPitches = 4;
+			const int noteWithPitchTag = 3;
+
+			var part = _scoreWithStaffValues.Parts[0];
+			var measure = part.Measures[measureContainingNotesWithPitches];
+			var note = measure.Notes[noteWithPitchTag];
+			var pitch = note.Pitch;
+
+			const int knownAlter = 1;
+
+			Assert.That(pitch.Alter, Is.EqualTo(knownAlter));
+		}
+	}
 }

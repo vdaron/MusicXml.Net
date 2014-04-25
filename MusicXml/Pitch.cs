@@ -1,3 +1,5 @@
+using System;
+using System.Xml;
 using MindTouch.Xml;
 
 namespace MusicXml
@@ -5,10 +7,12 @@ namespace MusicXml
 	public class Pitch
 	{
 		private readonly XDoc theDocument;
+		private readonly XmlNode _pitchNode;
 
-		internal Pitch(XDoc aDocument)
+		internal Pitch(XDoc aDocument, XmlNode pitchNode)
 		{
 			theDocument = aDocument;
+			_pitchNode = pitchNode;
 		}
 
 		public char Step
@@ -17,7 +21,11 @@ namespace MusicXml
 		}
 		public int Alter
 		{
-			get { return theDocument["alter"].AsInt ?? 0; }
+			get
+			{
+				var alterNode = _pitchNode.SelectSingleNode("alter");
+				return alterNode == null ? 0 : Convert.ToInt32(alterNode.InnerText);
+			}
 		}
 		public int Octave
 		{

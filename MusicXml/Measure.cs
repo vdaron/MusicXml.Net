@@ -48,9 +48,11 @@ namespace MusicXml
 				if (theAttributes == null)
 				{
 					var attributes = theDocument["attributes"];
+					var attributesNode = _measureNode.SelectSingleNode("attributes");
+
 					if (!attributes.IsEmpty)
 					{
-						theAttributes = new MeasureAttributes(attributes);
+						theAttributes = new MeasureAttributes(attributes, attributesNode);
 					}
 				}
 				return theAttributes;

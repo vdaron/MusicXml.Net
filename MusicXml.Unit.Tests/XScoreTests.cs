@@ -120,6 +120,40 @@ namespace MusicXml.Unit.Tests
 
 			Assert.That(part.Measures.Count, Is.EqualTo(knownMeasuresCount));
 		}
+		
+		[Test]
+		public void Populates_measure_width()
+		{
+			var part = _scoreWithStaffValues.Parts[0];
+			var measure = part.Measures[0];
+
+			const int knownWidth = 198;
+
+			Assert.That(measure.Width, Is.EqualTo(knownWidth));
+		}
+
+		
+		[Test]
+		public void Measure_attributes_is_not_null()
+		{
+			var part = _scoreWithStaffValues.Parts[0];
+
+			var measure = part.Measures[0];
+
+			Assert.That(measure.Attributes, Is.Not.Null);
+		}
+
+		[Test]
+		public void Populates_measure_divisions()
+		{
+			var part = _scoreWithStaffValues.Parts[0];
+
+			var measure = part.Measures[0];
+
+			const int knownMeasureDivisions = 8;
+
+			Assert.That(measure.Attributes.Divisions, Is.EqualTo(knownMeasureDivisions));
+		}
 
 		[Test]
 		public void Populates_note_staff()
@@ -130,23 +164,12 @@ namespace MusicXml.Unit.Tests
 			const int firstNoteIndex = 0;
 
 			var score = new XScore("TestData/MusicXmlWithStaffValues.xml");
-			
+
 			var part = score.Parts[knownPartWithStaffTags];
 			var measure = part.Measures[knownMeasureWithStaffTags];
 			var note = measure.Notes[firstNoteIndex];
 
 			Assert.That(note.Staff, Is.EqualTo(knownStaffValue));
-		}
-
-		[Test]
-		public void Populates_measure_width()
-		{
-			var part = _scoreWithStaffValues.Parts[0];
-			var measure = part.Measures[0];
-
-			const int knownWidth = 198;
-
-			Assert.That(measure.Width, Is.EqualTo(knownWidth));
 		}
 
 		[Test, Ignore]

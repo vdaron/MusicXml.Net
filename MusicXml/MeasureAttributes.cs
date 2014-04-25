@@ -1,3 +1,5 @@
+using System;
+using System.Xml;
 using MindTouch.Xml;
 
 namespace MusicXml
@@ -5,14 +7,24 @@ namespace MusicXml
 	public class MeasureAttributes
 	{
 		private readonly XDoc theDocument;
+		private readonly XmlNode _measureAttributesNode;
 
-		internal MeasureAttributes(XDoc aDocument)
+		internal MeasureAttributes(XDoc aDocument, XmlNode measureAttributesNode)
 		{
 			theDocument = aDocument;
+			_measureAttributesNode = measureAttributesNode;
 		}
+
 		public int Divisions
 		{
-			get { return theDocument["divisions"].AsInt ?? 0; }
+			get
+			{
+				var divisionsNode = _measureAttributesNode.SelectSingleNode("divisions");
+				if (divisionsNode == null)
+					return 0;
+
+				return Convert.ToInt32(divisionsNode.InnerText);
+			}
 		}
 		public Key Key
 		{

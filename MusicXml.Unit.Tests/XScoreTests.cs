@@ -218,6 +218,20 @@ namespace MusicXml.Unit.Tests
 
 			Assert.That(key.Fifths, Is.EqualTo(knownFifths));
 		}
+		
+		[Test]
+		public void Populates_key_mode()
+		{
+			var part = _scoreWithStaffValues.Parts[0];
+
+			var measure = part.Measures[0];
+
+			var key = measure.Attributes.Key;
+
+			const string knownMode = "major";
+
+			Assert.That(key.Mode, Is.EqualTo(knownMode));
+		}
 
 		[Test]
 		public void Measure_time_is_not_null()
@@ -244,21 +258,7 @@ namespace MusicXml.Unit.Tests
 
 			Assert.That(time.Beats, Is.EqualTo(knownBeats));
 		}
-
-		[Test]
-		public void Populates_key_mode()
-		{
-			var part = _scoreWithStaffValues.Parts[0];
-
-			var measure = part.Measures[0];
-
-			var key = measure.Attributes.Key;
-
-			const string knownMode = "major";
-
-			Assert.That(key.Mode, Is.EqualTo(knownMode));
-		}
-
+		
 		[Test]
 		public void Populates_note_staff()
 		{

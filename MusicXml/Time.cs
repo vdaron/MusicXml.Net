@@ -25,10 +25,7 @@ namespace MusicXml
 			get
 			{
 				var beatsNode = _timeNode.SelectSingleNode("beats");
-				if (beatsNode == null)
-					return 0;
-
-				return Convert.ToInt32(beatsNode.InnerText);
+				return beatsNode == null ? 0 : Convert.ToInt32(beatsNode.InnerText);
 			}
 		}
 		public string Mode

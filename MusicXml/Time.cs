@@ -1,4 +1,5 @@
 using System;
+using System.Xml;
 using MindTouch.Xml;
 
 namespace MusicXml
@@ -11,19 +12,30 @@ namespace MusicXml
 	public class Time
 	{
 		private readonly XDoc theDocument;
+		private readonly XmlNode _timeNode;
 
-		internal Time(XDoc aDocument)
+		internal Time(XDoc aDocument, XmlNode timeNode)
 		{
 			theDocument = aDocument;
+			_timeNode = timeNode;
 		}
+
 		public int Beats
 		{
-			get { return theDocument["beats"].AsInt ?? 0; }
+			get
+			{
+				var beatsNode = _timeNode.SelectSingleNode("beats");
+				if (beatsNode == null)
+					return 0;
+
+				return Convert.ToInt32(beatsNode.InnerText);
+			}
 		}
 		public string Mode
 		{
 			get { return theDocument["beat-type"].AsText ?? String.Empty; }
 		}
+
 		public TimeSymbol Symbol
 		{
 			get

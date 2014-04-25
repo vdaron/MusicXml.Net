@@ -220,6 +220,32 @@ namespace MusicXml.Unit.Tests
 		}
 
 		[Test]
+		public void Measure_time_is_not_null()
+		{
+			var part = _scoreWithStaffValues.Parts[0];
+
+			var measure = part.Measures[0];
+
+			var time = measure.Attributes.Time;
+
+			Assert.That(time, Is.Not.Null);
+		}
+
+		[Test]
+		public void Populates_time_beats()
+		{
+			var part = _scoreWithStaffValues.Parts[0];
+
+			var measure = part.Measures[0];
+
+			var time = measure.Attributes.Time;
+
+			const int knownBeats = 2;
+
+			Assert.That(time.Beats, Is.EqualTo(knownBeats));
+		}
+
+		[Test]
 		public void Populates_key_mode()
 		{
 			var part = _scoreWithStaffValues.Parts[0];

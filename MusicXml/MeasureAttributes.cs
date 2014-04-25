@@ -43,7 +43,8 @@ namespace MusicXml
 			get
 			{
 				var time = theDocument["time"];
-				return time.IsEmpty ? null : new Time(time);
+				var timeNode = _measureAttributesNode.SelectSingleNode("time");
+				return time.IsEmpty ? null : new Time(time, timeNode);
 			}
 		}
 		public Clef Clef

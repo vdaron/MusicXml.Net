@@ -194,6 +194,32 @@ namespace MusicXml.Unit.Tests
 		}
 
 		[Test]
+		public void Key_is_not_null()
+		{
+			var part = _scoreWithStaffValues.Parts[0];
+
+			var measure = part.Measures[0];
+
+			var key = measure.Attributes.Key;
+
+			Assert.That(key, Is.Not.Null);
+		}
+
+		[Test]
+		public void Populates_key_fifths()
+		{
+			var part = _scoreWithStaffValues.Parts[0];
+
+			var measure = part.Measures[0];
+
+			var key = measure.Attributes.Key;
+
+			const int knownFifths = 3;
+
+			Assert.That(key.Fifths, Is.EqualTo(knownFifths));
+		}
+
+		[Test]
 		public void Populates_note_staff()
 		{
 			const int knownStaffValue = 1;

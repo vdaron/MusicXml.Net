@@ -31,7 +31,8 @@ namespace MusicXml
 			get
 			{
 				var key = theDocument["key"];
-				return key.IsEmpty ? null : new Key(key);
+				var keyNode = _measureAttributesNode.SelectSingleNode("key");
+				return key.IsEmpty ? null : new Key(key, keyNode);
 			}
 		}
 		public Time Time

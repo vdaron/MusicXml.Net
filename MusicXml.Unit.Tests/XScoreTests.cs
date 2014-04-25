@@ -220,6 +220,20 @@ namespace MusicXml.Unit.Tests
 		}
 
 		[Test]
+		public void Populates_key_mode()
+		{
+			var part = _scoreWithStaffValues.Parts[0];
+
+			var measure = part.Measures[0];
+
+			var key = measure.Attributes.Key;
+
+			const string knownMode = "major";
+
+			Assert.That(key.Mode, Is.EqualTo(knownMode));
+		}
+
+		[Test]
 		public void Populates_note_staff()
 		{
 			const int knownStaffValue = 1;

@@ -1,17 +1,14 @@
 using System;
 using System.Xml;
-using MindTouch.Xml;
 
 namespace MusicXml
 {
 	public class Key
 	{
-		private readonly XDoc theDocument;
 		private readonly XmlNode _keyNode;
 
-		internal Key(XDoc aDocument, XmlNode keyNode)
+		internal Key(XmlNode keyNode)
 		{
-			theDocument = aDocument;
 			_keyNode = keyNode;
 		}
 
@@ -28,7 +25,14 @@ namespace MusicXml
 		}
 		public string Mode
 		{
-			get{ return theDocument["mode"].AsText ?? String.Empty; }
+			get
+			{
+				var modeNode = _keyNode.SelectSingleNode("mode");
+				if (modeNode == null)
+					return string.Empty;
+
+				return modeNode.InnerText;
+			}
 		}
 	}
 }

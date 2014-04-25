@@ -310,7 +310,35 @@ namespace MusicXml.Unit.Tests
 
 			Assert.That(note.Duration, Is.EqualTo(knownDuration));
 		}
-		
+
+		[Test]
+		public void Populates_note_type()
+		{
+			var part = _scoreWithStaffValues.Parts[0];
+
+			var measure = part.Measures[0];
+
+			var note = measure.Notes[0];
+
+			const string knownNoteType = "16th";
+
+			Assert.That(note.Type, Is.EqualTo(knownNoteType));
+		}
+
+		[Test]
+		public void Populates_note_voice()
+		{
+			var part = _scoreWithStaffValues.Parts[0];
+
+			var measure = part.Measures[0];
+
+			var note = measure.Notes[0];
+
+			const int knownNoteVoice = 1;
+
+			Assert.That(note.Voice, Is.EqualTo(knownNoteVoice));
+		}
+
 		[Test]
 		public void Populates_note_staff()
 		{
@@ -319,9 +347,7 @@ namespace MusicXml.Unit.Tests
 			const int knownMeasureWithStaffTags = 0;
 			const int firstNoteIndex = 0;
 
-			var score = new XScore("TestData/MusicXmlWithStaffValues.xml");
-
-			var part = score.Parts[knownPartWithStaffTags];
+			var part = _scoreWithStaffValues.Parts[knownPartWithStaffTags];
 			var measure = part.Measures[knownMeasureWithStaffTags];
 			var note = measure.Notes[firstNoteIndex];
 

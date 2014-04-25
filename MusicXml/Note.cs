@@ -17,18 +17,25 @@ namespace MusicXml
 
 		public string Type
 		{
-			get { return theDocument["type"].AsText ?? String.Empty; }
+			get
+			{
+				var typeNode = _noteNode.SelectSingleNode("type");
+				return typeNode == null ? string.Empty : typeNode.InnerText;
+			}
 		}
 		public int Voice
 		{
-			get { return theDocument["voice"].AsInt ?? -1; }
+			get
+			{
+				var voiceNode = _noteNode.SelectSingleNode("voice");
+				return voiceNode == null ? -1 : Convert.ToInt32(voiceNode.InnerText);
+			}
 		}
 		public int Duration
 		{
 			get
 			{
 				var durationNode = _noteNode.SelectSingleNode("duration");
-
 				return durationNode == null ? -1 : Convert.ToInt32(durationNode.InnerText);
 			}
 		}
@@ -53,7 +60,8 @@ namespace MusicXml
 		{
 			get 
 			{
-				return theDocument["staff"].AsInt ?? -1;
+				var staffNode = _noteNode.SelectSingleNode("staff");
+				return staffNode == null ? -1 : Convert.ToInt32(staffNode.InnerText);
 			}
 		}
 

@@ -395,7 +395,7 @@ namespace MusicXml.Unit.Tests
 		}
 
 		[Test]
-		public void Populates_note_pitch_alter()
+		public void Populates_pitch_alter()
 		{
 			const int measureContainingNotesWithPitches = 4;
 			const int noteWithPitchTag = 3;
@@ -408,6 +408,22 @@ namespace MusicXml.Unit.Tests
 			const int knownAlter = 1;
 
 			Assert.That(pitch.Alter, Is.EqualTo(knownAlter));
+		}
+
+		[Test]
+		public void Populates_pitch_octave()
+		{
+			const int measureContainingNotesWithPitches = 4;
+			const int noteWithPitchTag = 3;
+
+			var part = _scoreWithStaffValues.Parts[0];
+			var measure = part.Measures[measureContainingNotesWithPitches];
+			var note = measure.Notes[noteWithPitchTag];
+			var pitch = note.Pitch;
+
+			const int knownOctave = 5;
+
+			Assert.That(pitch.Octave, Is.EqualTo(knownOctave));
 		}
 	}
 }

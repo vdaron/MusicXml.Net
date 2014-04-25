@@ -29,7 +29,11 @@ namespace MusicXml
 		}
 		public int Octave
 		{
-			get { return theDocument["octave"].AsInt ?? 0; }
+			get
+			{
+				var octaveNode = _pitchNode.SelectSingleNode("octave");
+				return octaveNode == null ? 0 : Convert.ToInt32(octaveNode.InnerText);
+			}
 		}
 	}
 }

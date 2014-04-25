@@ -1,23 +1,24 @@
 using System;
 using System.Xml;
-using MindTouch.Xml;
 
 namespace MusicXml
 {
 	public class Pitch
 	{
-		private readonly XDoc theDocument;
 		private readonly XmlNode _pitchNode;
 
-		internal Pitch(XDoc aDocument, XmlNode pitchNode)
+		internal Pitch(XmlNode pitchNode)
 		{
-			theDocument = aDocument;
 			_pitchNode = pitchNode;
 		}
 
-		public char Step
+		public char? Step
 		{
-			get { return theDocument["step"].AsText[0]; }
+			get
+			{
+				var stepNode = _pitchNode.SelectSingleNode("step");
+				return stepNode != null ? (char?) stepNode.InnerText[0] : null;
+			}
 		}
 		public int Alter
 		{

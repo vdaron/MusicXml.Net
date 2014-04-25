@@ -425,5 +425,21 @@ namespace MusicXml.Unit.Tests
 
 			Assert.That(pitch.Octave, Is.EqualTo(knownOctave));
 		}
+
+		[Test]
+		public void Populates_pitch_step()
+		{
+			const int measureContainingNotesWithPitches = 4;
+			const int noteWithPitchTag = 3;
+
+			var part = _scoreWithStaffValues.Parts[0];
+			var measure = part.Measures[measureContainingNotesWithPitches];
+			var note = measure.Notes[noteWithPitchTag];
+			var pitch = note.Pitch;
+
+			const char knownStep = 'C';
+
+			Assert.That(pitch.Step, Is.EqualTo(knownStep));
+		}
 	}
 }

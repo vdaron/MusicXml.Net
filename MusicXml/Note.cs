@@ -69,13 +69,8 @@ namespace MusicXml
 		{
 			get
 			{
-				var chordTag = theDocument["chord"];
-				
-				if (chordTag.AsText != null)
-				{
-					return true;
-				}
-				return false;
+				var chordNode = _noteNode.SelectSingleNode("chord");
+				return chordNode != null;
 			}
 		}
 	}

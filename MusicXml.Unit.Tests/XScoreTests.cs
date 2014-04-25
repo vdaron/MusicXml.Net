@@ -354,21 +354,22 @@ namespace MusicXml.Unit.Tests
 			Assert.That(note.Staff, Is.EqualTo(knownStaffValue));
 		}
 
-		[Test, Ignore]
+		[Test]
 		public void Is_chord_tone_true_for_note_with_chord_tag()
 		{
 			const int knownChordToneIndex = 1;
+			const int knownPartWithChord = 1;
 
 			var score = new XScore("TestData/MusicXmlWithChords.xml");
 
-			var part = score.Parts[0];
+			var part = score.Parts[knownPartWithChord];
 			var measure = part.Measures[0];
 			var note = measure.Notes[knownChordToneIndex];
 
 			Assert.That(note.IsChordTone, Is.True);
 		}
 
-		[Test, Ignore]
+		[Test]
 		public void Is_chord_tone_false_for_note_without_chord_tag()
 		{
 			var score = new XScore("TestData/MusicXmlWithChords.xml");

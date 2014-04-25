@@ -32,10 +32,15 @@ namespace MusicXml
 			get
 			{
 				var notes = new List<Note>();
-				foreach (XDoc note in theDocument["note"])
+				var noteNodes = _measureNode.SelectNodes("note");
+				var counter = 0;
+
+				foreach (var note in theDocument["note"])
 				{
-					notes.Add(new Note(note));
+					notes.Add(new Note(note, noteNodes[counter]));
+					counter++;
 				}
+
 				return notes;
 			}
 		}

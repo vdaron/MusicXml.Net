@@ -1,4 +1,5 @@
 using System;
+using System.Xml;
 using MindTouch.Xml;
 
 namespace MusicXml
@@ -6,10 +7,12 @@ namespace MusicXml
 	public class Note
 	{
 		private readonly XDoc theDocument;
+		private readonly XmlNode _noteNode;
 
-		internal Note(XDoc aDocument)
+		internal Note(XDoc aDocument, XmlNode noteNode)
 		{
 			theDocument = aDocument;
+			_noteNode = noteNode;
 		}
 
 		public string Type
@@ -22,7 +25,12 @@ namespace MusicXml
 		}
 		public int Duration
 		{
-			get { return theDocument["duration"].AsInt ?? -1; }
+			get
+			{
+				var durationNode = _noteNode.SelectSingleNode("duration");
+
+				return durationNode == null ? -1 : Convert.ToInt32(durationNode.InnerText);
+			}
 		}
 		public Lyric Lyric
 		{

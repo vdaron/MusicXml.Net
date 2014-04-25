@@ -258,6 +258,20 @@ namespace MusicXml.Unit.Tests
 
 			Assert.That(time.Beats, Is.EqualTo(knownBeats));
 		}
+
+		[Test]
+		public void Populates_time_mode()
+		{
+			var part = _scoreWithStaffValues.Parts[0];
+
+			var measure = part.Measures[0];
+
+			var time = measure.Attributes.Time;
+
+			const string knownTimeMode = "4";
+
+			Assert.That(time.Mode, Is.EqualTo(knownTimeMode));
+		}
 		
 		[Test]
 		public void Populates_note_staff()

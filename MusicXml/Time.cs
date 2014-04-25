@@ -30,7 +30,11 @@ namespace MusicXml
 		}
 		public string Mode
 		{
-			get { return theDocument["beat-type"].AsText ?? String.Empty; }
+			get
+			{
+				var beatTypeNode = _timeNode.SelectSingleNode("beat-type");
+				return beatTypeNode == null ? string.Empty : beatTypeNode.InnerText;
+			}
 		}
 
 		public TimeSymbol Symbol

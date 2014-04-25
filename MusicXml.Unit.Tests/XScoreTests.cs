@@ -156,6 +156,44 @@ namespace MusicXml.Unit.Tests
 		}
 
 		[Test]
+		public void Measure_clef_is_not_null()
+		{
+			var part = _scoreWithStaffValues.Parts[0];
+
+			var measure = part.Measures[0];
+
+			Assert.That(measure.Attributes.Clef, Is.Not.Null);
+		}
+
+		[Test]
+		public void Populates_measure_clef_line()
+		{
+			var part = _scoreWithStaffValues.Parts[0];
+
+			var measure = part.Measures[0];
+
+			var clef = measure.Attributes.Clef;
+
+			const int knownClefLine = 2;
+
+			Assert.That(clef.Line, Is.EqualTo(knownClefLine));
+		}
+
+		[Test]
+		public void Populates_measure_clef_sign()
+		{
+			var part = _scoreWithStaffValues.Parts[0];
+
+			var measure = part.Measures[0];
+
+			var clef = measure.Attributes.Clef;
+
+			const string knownClefSign = "G";
+
+			Assert.That(clef.Sign, Is.EqualTo(knownClefSign));
+		}
+
+		[Test]
 		public void Populates_note_staff()
 		{
 			const int knownStaffValue = 1;

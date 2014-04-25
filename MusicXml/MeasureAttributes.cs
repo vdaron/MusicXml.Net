@@ -46,8 +46,12 @@ namespace MusicXml
 		{
 			get
 			{
-				var clef = theDocument["clef"];
-				return clef.IsEmpty ? null : new Clef(clef);
+				var clefNode = _measureAttributesNode.SelectSingleNode("clef");
+
+				if (clefNode == null)
+					return null;
+
+				return new Clef(clefNode);
 			}
 		}
 	}

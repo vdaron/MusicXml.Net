@@ -1,23 +1,38 @@
 using System;
-using MindTouch.Xml;
+using System.Xml;
 
 namespace MusicXml
 {
 	public class Clef
 	{
-		private readonly XDoc theDocument;
+		private readonly XmlNode _clefNode;
 
-		internal Clef(XDoc aDocument)
+		internal Clef(XmlNode clefNode)
 		{
-			theDocument = aDocument;
+			_clefNode = clefNode;
 		}
+
 		public int Line
 		{
-			get { return theDocument["line"].AsInt ?? 0; }
+			get
+			{
+				var lineNode = _clefNode.SelectSingleNode("line");
+				if (lineNode == null)
+					return 0;
+
+				return Convert.ToInt32(lineNode.InnerText);
+			}
 		}
 		public string Sign
 		{
-			get { return theDocument["sign"].AsText ?? String.Empty; }
+			get
+			{
+				var signNode = _clefNode.SelectSingleNode("sign");
+				if (signNode == null)
+					return string.Empty;
+
+				return signNode.InnerText;
+			}
 		}
 	}
 }

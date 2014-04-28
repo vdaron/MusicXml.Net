@@ -471,5 +471,21 @@ namespace MusicXml.Unit.Tests
 
 			Assert.That(lyric.Syllabic, Is.EqualTo(knownSyllabic));
 		}
+
+		[Test]
+		public void Populates_lyric_text()
+		{
+			const int knownMeasureWithLyric = 4;
+			const int knownNoteWithLyric = 3;
+
+			var part = _scoreWithStaffValues.Parts[0];
+			var measure = part.Measures[knownMeasureWithLyric];
+			var note = measure.Notes[knownNoteWithLyric];
+			var lyric = note.Lyric;
+
+			const string knownLyricText = "Im";
+
+			Assert.That(lyric.Text, Is.EqualTo(knownLyricText));
+		}
 	}
 }

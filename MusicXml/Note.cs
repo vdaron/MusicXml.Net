@@ -44,7 +44,8 @@ namespace MusicXml
 			get
 			{
 				var lyric = theDocument["lyric"];
-				return lyric.IsEmpty ? null : new Lyric(lyric);
+				var lyricNode = _noteNode.SelectSingleNode("lyric");
+				return lyric.IsEmpty ? null : new Lyric(lyric, lyricNode);
 			}
 		}
 		public Pitch Pitch

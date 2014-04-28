@@ -1,4 +1,5 @@
 using System;
+using System.Xml;
 using MindTouch.Xml;
 
 namespace MusicXml
@@ -15,17 +16,25 @@ namespace MusicXml
 	public class Lyric
 	{
 		private readonly XDoc theDocument;
+		private readonly XmlNode _lyricNode;
 
-		internal Lyric(XDoc aDocument)
+		internal Lyric(XDoc aDocument, XmlNode lyricNode)
 		{
 			theDocument = aDocument;
+			_lyricNode = lyricNode;
 		}
 
 		public Syllabic Syllabic
 		{
 			get
 			{
-				switch (theDocument["syllabic"].AsText ?? String.Empty)
+				var syllabicNode = _lyricNode.SelectSingleNode("syllabic");
+
+				var syllabicText = string.Empty;
+				if (syllabicNode != null)
+					syllabicText = syllabicNode.InnerText;
+
+				switch (syllabicText)
 				{
 					case "":
 						return Syllabic.None;
@@ -44,7 +53,12 @@ namespace MusicXml
 		}
 		public string Text
 		{
-			get { return theDocument["text"].AsText ?? String.Empty; }
+			get
+			{
+				var textNode = _lyricNode.SelectSingleNode("text");
+
+				return textNode == null ? string.Empty : textNode.InnerText;
+			}
 		}
 	}
 }

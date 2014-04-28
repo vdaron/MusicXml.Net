@@ -5,7 +5,7 @@ using NUnit.Framework;
 namespace MusicXml.Unit.Tests
 {
 	[TestFixture]
-    public class XScoreTests
+    public class ScoreTests
     {
 		private Score _scoreWithStaffValues;
 

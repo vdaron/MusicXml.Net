@@ -4,15 +4,15 @@ using System.Xml;
 
 namespace MusicXml
 {
-	public class XScore
+	public class Score
 	{
 		private readonly XmlDocument _document;
 
-		public XScore(string aFileName)
+		public Score(string filename)
 		{
 			_document = new XmlDocument();
 
-			var xml = GetXml(aFileName);
+			var xml = GetXml(filename);
 			_document.XmlResolver = null;
 			_document.LoadXml(xml);
 		}

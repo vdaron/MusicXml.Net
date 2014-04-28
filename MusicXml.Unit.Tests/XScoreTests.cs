@@ -6,12 +6,12 @@ namespace MusicXml.Unit.Tests
 	[TestFixture]
     public class XScoreTests
     {
-		private XScore _scoreWithStaffValues;
+		private Score _scoreWithStaffValues;
 
 		[TestFixtureSetUp]
 		public void SetUp()
 		{
-			_scoreWithStaffValues = new XScore("TestData/MusicXmlWithStaffValues.xml");
+			_scoreWithStaffValues = new Score("TestData/MusicXmlWithStaffValues.xml");
 		}
 
 		[Test]
@@ -360,7 +360,7 @@ namespace MusicXml.Unit.Tests
 			const int knownChordToneIndex = 1;
 			const int knownPartWithChord = 1;
 
-			var score = new XScore("TestData/MusicXmlWithChords.xml");
+			var score = new Score("TestData/MusicXmlWithChords.xml");
 
 			var part = score.Parts[knownPartWithChord];
 			var measure = part.Measures[0];
@@ -372,7 +372,7 @@ namespace MusicXml.Unit.Tests
 		[Test]
 		public void Is_chord_tone_false_for_note_without_chord_tag()
 		{
-			var score = new XScore("TestData/MusicXmlWithChords.xml");
+			var score = new Score("TestData/MusicXmlWithChords.xml");
 
 			var part = score.Parts[0];
 			var measure = part.Measures[0];

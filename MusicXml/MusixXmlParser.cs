@@ -10,7 +10,23 @@ namespace MusicXml
 		{
 			var document = GetXmlDocument(filename);
 
-			var score = new Score(document);
+			var score = new Score();
+
+			var movementTitleNode = document.SelectSingleNode("score-partwise/movement-title");
+			score.MovementTitle = movementTitleNode != null ? movementTitleNode.InnerText : string.Empty;
+			
+			var identificationNode = document.SelectSingleNode("score-partwise/identification");
+			score.Identification = new Identification(identificationNode);
+			
+			var partNodes = document.SelectNodes("score-partwise/part-list/score-part");
+			
+			if (partNodes != null)
+			{
+				foreach (XmlNode partNode in partNodes)
+				{
+					score.Parts.Add(new Part(partNode));
+				}
+			}
 
 			return score;
 		}

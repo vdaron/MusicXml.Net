@@ -70,6 +70,7 @@
     <Compile Include="Domain\Pitch.cs" />
     <Compile Include="Domain\Score.cs" />
     <Compile Include="Domain\Time.cs" />
+    <Compile Include="MusixXmlParser.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>

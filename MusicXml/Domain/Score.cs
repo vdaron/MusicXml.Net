@@ -1,5 +1,4 @@
 using System.Collections.Generic;
-using System.IO;
 using System.Xml;
 
 namespace MusicXml.Domain
@@ -8,24 +7,11 @@ namespace MusicXml.Domain
 	{
 		private readonly XmlDocument _document;
 
-		public Score(string filename)
+		internal Score(XmlDocument document)
 		{
-			_document = new XmlDocument();
-
-			var xml = GetXml(filename);
-			_document.XmlResolver = null;
-			_document.LoadXml(xml);
+			_document = document;
 		}
-
-		private static string GetXml(string filename)
-		{
-			using (var fileStream = new FileStream(filename, FileMode.Open))
-			using (var streamReader = new StreamReader(fileStream))
-			{
-				return streamReader.ReadToEnd();
-			}
-		}
-
+		
 		public string MovementTitle
 		{
 			get

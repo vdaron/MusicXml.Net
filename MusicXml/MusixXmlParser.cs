@@ -8,16 +8,25 @@ namespace MusicXml
 	{
 		public static Score GetScore(string filename)
 		{
+			var document = GetXmlDocument(filename);
+
+			var score = new Score(document);
+
+			return score;
+		}
+
+		private static XmlDocument GetXmlDocument(string filename)
+		{
 			var document = new XmlDocument();
 
-			var xml = GetXml(filename);
+			var xml = GetFileContents(filename);
 			document.XmlResolver = null;
 			document.LoadXml(xml);
 
-			return new Score(document);
+			return document;
 		}
 
-		private static string GetXml(string filename)
+		private static string GetFileContents(string filename)
 		{
 			using (var fileStream = new FileStream(filename, FileMode.Open))
 			using (var streamReader = new StreamReader(fileStream))

@@ -1,4 +1,5 @@
-﻿using System.IO;
+﻿using System.Collections.Generic;
+using System.IO;
 using System.Xml;
 using MusicXml.Domain;
 
@@ -24,7 +25,29 @@ namespace MusicXml
 			{
 				foreach (XmlNode partNode in partNodes)
 				{
-					score.Parts.Add(new Part(partNode));
+					var part = new Part();
+					score.Parts.Add(part);
+
+					if (partNode.Attributes != null)
+						part.Id = partNode.Attributes["id"].InnerText;
+					
+					var partNameNode = partNode.SelectSingleNode("part-name");
+					
+					if (partNameNode != null)
+						part.Name = partNameNode.InnerText;
+
+					var measuresXpath = string.Format("//part[@id='{0}']/measure", part.Id);
+
+					var measureNodes = partNode.SelectNodes(measuresXpath);
+
+					if (measureNodes != null)
+					{
+						foreach (XmlNode measure in measureNodes)
+						{
+							part.Measures.Add(new Measure(measure));
+						}
+					}
+
 				}
 			}
 

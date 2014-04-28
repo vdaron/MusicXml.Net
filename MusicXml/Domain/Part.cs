@@ -1,60 +1,18 @@
 using System.Collections.Generic;
-using System.Xml;
 
 namespace MusicXml.Domain
 {
 	public class Part
 	{
-		private readonly XmlNode _partNode;
-
-		internal Part(XmlNode partNode)
+		internal Part()
 		{
-			_partNode = partNode;
+			Measures = new List<Measure>();
 		}
 
-		public string Id
-		{
-			get
-			{
-				if (_partNode.Attributes == null)
-					return null;
-
-				return _partNode.Attributes["id"].InnerText;
-			}
-		}
-
-		public string Name
-		{
-			get
-			{
-				var partNameNode = _partNode.SelectSingleNode("part-name");
-				if (partNameNode == null)
-					return null;
-
-				return partNameNode.InnerText;
-			}
-		}
-
-		public List<Measure> Measures
-		{
-			get
-			{
-				var measures = new List<Measure>();
-
-				var measuresXpath = "//part[@id='" + Id + "']/measure";
-
-				var measureNodes = _partNode.SelectNodes(measuresXpath);
-			
-				if (measureNodes == null)
-					return measures;
-			
-				foreach (XmlNode measure in measureNodes)
-				{
-					measures.Add(new Measure(measure));
-				}
-
-				return measures;
-			}
-		}
+		public string Id { get; internal set; }
+		
+		public string Name { get; internal set; }
+		
+		public List<Measure> Measures { get; internal set; }
 	}
 }

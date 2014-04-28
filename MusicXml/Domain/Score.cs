@@ -2,7 +2,7 @@ using System.Collections.Generic;
 using System.IO;
 using System.Xml;
 
-namespace MusicXml
+namespace MusicXml.Domain
 {
 	public class Score
 	{

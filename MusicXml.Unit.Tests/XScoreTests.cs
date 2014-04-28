@@ -1,4 +1,5 @@
 ﻿using System;
+using MusicXml.Domain;
 using NUnit.Framework;
 
 namespace MusicXml.Unit.Tests

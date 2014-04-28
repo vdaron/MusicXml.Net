@@ -1,7 +1,7 @@
 using System.Collections.Generic;
 using System.Xml;
 
-namespace MusicXml
+namespace MusicXml.Domain
 {
 	public class Part
 	{

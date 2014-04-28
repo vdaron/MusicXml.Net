@@ -1,7 +1,7 @@
 using System;
 using System.Xml;
 
-namespace MusicXml
+namespace MusicXml.Domain
 {
 	public class Note
 	{

@@ -1,8 +1,8 @@
-﻿using System;
+using System;
 using System.Text;
 using System.Xml;
 
-namespace MusicXml
+namespace MusicXml.Domain
 {
 	/// <summary>
 	/// The encoding element contains information about who did the digital encoding,

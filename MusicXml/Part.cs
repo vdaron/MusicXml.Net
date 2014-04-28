@@ -1,17 +1,14 @@
 using System.Collections.Generic;
 using System.Xml;
-using MindTouch.Xml;
 
 namespace MusicXml
 {
 	public class Part
 	{
-		private readonly XDoc theDocument;
 		private readonly XmlNode _partNode;
 
-		internal Part(XDoc aDocument, XmlNode partNode)
+		internal Part(XmlNode partNode)
 		{
-			theDocument = aDocument;
 			_partNode = partNode;
 		}
 
@@ -47,12 +44,13 @@ namespace MusicXml
 				var measuresXpath = "//part[@id='" + Id + "']/measure";
 
 				var measureNodes = _partNode.SelectNodes(measuresXpath);
-				var counter = 0;
-
-				foreach (var measure in theDocument[measuresXpath])
+			
+				if (measureNodes == null)
+					return measures;
+			
+				foreach (XmlNode measure in measureNodes)
 				{
-					measures.Add(new Measure(measure, measureNodes[counter]));
-					counter++;
+					measures.Add(new Measure(measure));
 				}
 
 				return measures;

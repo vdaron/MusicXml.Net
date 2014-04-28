@@ -1,17 +1,14 @@
 using System;
 using System.Xml;
-using MindTouch.Xml;
 
 namespace MusicXml
 {
 	public class Note
 	{
-		private readonly XDoc theDocument;
 		private readonly XmlNode _noteNode;
 
-		internal Note(XDoc aDocument, XmlNode noteNode)
+		internal Note(XmlNode noteNode)
 		{
-			theDocument = aDocument;
 			_noteNode = noteNode;
 		}
 
@@ -43,9 +40,8 @@ namespace MusicXml
 		{
 			get
 			{
-				var lyric = theDocument["lyric"];
 				var lyricNode = _noteNode.SelectSingleNode("lyric");
-				return lyric.IsEmpty ? null : new Lyric(lyric, lyricNode);
+				return lyricNode == null ? null : new Lyric(lyricNode);
 			}
 		}
 		public Pitch Pitch

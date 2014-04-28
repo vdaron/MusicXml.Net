@@ -1,18 +1,15 @@
 using System;
 using System.Collections.Generic;
 using System.Xml;
-using MindTouch.Xml;
 
 namespace MusicXml
 {
 	public class Measure
 	{
-		private readonly XDoc theDocument;
 		private readonly XmlNode _measureNode;
 
-		internal Measure(XDoc aDocument, XmlNode measureNode)
+		internal Measure(XmlNode measureNode)
 		{
-			theDocument = aDocument;
 			_measureNode = measureNode;
 		}
 
@@ -33,12 +30,13 @@ namespace MusicXml
 			{
 				var notes = new List<Note>();
 				var noteNodes = _measureNode.SelectNodes("note");
-				var counter = 0;
 
-				foreach (var note in theDocument["note"])
+				if (noteNodes == null)
+					return notes;
+
+				foreach (XmlNode note in noteNodes)
 				{
-					notes.Add(new Note(note, noteNodes[counter]));
-					counter++;
+					notes.Add(new Note(note));
 				}
 
 				return notes;

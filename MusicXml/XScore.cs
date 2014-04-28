@@ -1,19 +1,15 @@
 using System.Collections.Generic;
 using System.IO;
 using System.Xml;
-using MindTouch.Dream;
-using MindTouch.Xml;
 
 namespace MusicXml
 {
 	public class XScore
 	{
-		private readonly XDoc theDocument;
 		private readonly XmlDocument _document;
 
 		public XScore(string aFileName)
 		{
-			theDocument = XDocFactory.LoadFrom(aFileName, MimeType.XML);
 			_document = new XmlDocument();
 
 			var xml = GetXml(aFileName);
@@ -28,11 +24,6 @@ namespace MusicXml
 			{
 				return streamReader.ReadToEnd();
 			}
-		}
-
-		public XScore(XDoc aDocument)
-		{
-			theDocument = aDocument;
 		}
 
 		public string MovementTitle
@@ -60,12 +51,10 @@ namespace MusicXml
 				var parts = new List<Part>();
 
 				var partNodes = _document.SelectNodes("score-partwise/part-list/score-part");
-				var counter = 0;
 
-				foreach (var part in theDocument["part-list/score-part"])
+				foreach (XmlNode partNode in partNodes)
 				{
-					parts.Add(new Part(part, partNodes[counter]));
-					counter++;
+					parts.Add(new Part(partNode));
 				}
 
 				return parts;

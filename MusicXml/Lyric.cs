@@ -1,6 +1,5 @@
 using System;
 using System.Xml;
-using MindTouch.Xml;
 
 namespace MusicXml
 {
@@ -15,12 +14,10 @@ namespace MusicXml
 
 	public class Lyric
 	{
-		private readonly XDoc theDocument;
 		private readonly XmlNode _lyricNode;
 
-		internal Lyric(XDoc aDocument, XmlNode lyricNode)
+		internal Lyric(XmlNode lyricNode)
 		{
-			theDocument = aDocument;
 			_lyricNode = lyricNode;
 		}
 

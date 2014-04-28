@@ -441,5 +441,35 @@ namespace MusicXml.Unit.Tests
 
 			Assert.That(pitch.Step, Is.EqualTo(knownStep));
 		}
+
+		[Test]
+		public void Lyric_is_not_null()
+		{
+			const int knownMeasureWithLyric = 4;
+			const int knownNoteWithLyric = 3;
+
+			var part = _scoreWithStaffValues.Parts[0];
+			var measure = part.Measures[knownMeasureWithLyric];
+			var note = measure.Notes[knownNoteWithLyric];
+			var lyric = note.Lyric;
+
+			Assert.That(lyric, Is.Not.Null);
+		}
+
+		[Test]
+		public void Populates_lyric_syllabic()
+		{
+			const int knownMeasureWithLyric = 4;
+			const int knownNoteWithLyric = 3;
+
+			var part = _scoreWithStaffValues.Parts[0];
+			var measure = part.Measures[knownMeasureWithLyric];
+			var note = measure.Notes[knownNoteWithLyric];
+			var lyric = note.Lyric;
+
+			const Syllabic knownSyllabic = Syllabic.Single;
+
+			Assert.That(lyric.Syllabic, Is.EqualTo(knownSyllabic));
+		}
 	}
 }

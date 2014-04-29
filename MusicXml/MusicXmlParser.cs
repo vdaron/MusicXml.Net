@@ -1,7 +1,9 @@
-﻿using System.Collections.Generic;
+﻿using System;
 using System.IO;
+using System.Text;
 using System.Xml;
 using MusicXml.Domain;
+using Encoding = MusicXml.Domain.Encoding;
 
 namespace MusicXml
 {
@@ -28,7 +30,17 @@ namespace MusicXml
 				score.Identification.Rights = rightsNode != null ? rightsNode.InnerText : string.Empty;
 
 				var encodingNode = identificationNode.SelectSingleNode("encoding");
-				score.Identification.Encoding = new Encoding(encodingNode);
+				score.Identification.Encoding = new Encoding();
+
+				if (encodingNode != null)
+				{
+					score.Identification.Encoding.Software = GetInnerTextOfChildTag(encodingNode, "software");
+
+					score.Identification.Encoding.Description = GetInnerTextOfChildTag(encodingNode, "encoding-description");
+					
+					var encodingDate = encodingNode.SelectSingleNode("encoding-date");
+					if (encodingDate != null) score.Identification.Encoding.EncodingDate = Convert.ToDateTime(encodingDate.InnerText);
+				}
 			}
 
 			var partNodes = document.SelectNodes("score-partwise/part-list/score-part");
@@ -64,6 +76,23 @@ namespace MusicXml
 			}
 
 			return score;
+		}
+
+		private static string GetInnerTextOfChildTag(XmlNode encodingNode, string tagName)
+		{
+			var softwareStringBuilder = new StringBuilder();
+			
+			var encodingSoftwareNodes = encodingNode.SelectNodes(tagName);
+
+			if (encodingSoftwareNodes != null)
+			{
+				foreach (XmlNode node in encodingSoftwareNodes)
+				{
+					softwareStringBuilder.AppendLine(node.InnerText);
+				}
+			}
+
+			return softwareStringBuilder.ToString();
 		}
 
 		private static XmlDocument GetXmlDocument(string filename)

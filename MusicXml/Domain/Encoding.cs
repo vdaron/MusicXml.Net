@@ -1,6 +1,4 @@
 using System;
-using System.Text;
-using System.Xml;
 
 namespace MusicXml.Domain
 {
@@ -12,66 +10,15 @@ namespace MusicXml.Domain
 	/// </summary>
 	public class Encoding
 	{
-		private readonly XmlNode _xmlNode;
-
-		internal Encoding(XmlNode xmlNode)
+		internal Encoding()
 		{
-			_xmlNode = xmlNode;
 		}
 
-		public string Software
-		{
-			get
-			{
-				var result = new StringBuilder();
-
-				var encodingSoftwareNodes = _xmlNode.SelectNodes("software");
-
-				if (encodingSoftwareNodes != null)
-				{
-					foreach (XmlNode node in encodingSoftwareNodes)
-					{
-						result.AppendLine(node.InnerText);
-					}
-				}
-
-				return result.ToString();
-			}
-		}
-
-		public string Description
-		{
-			get
-			{
-				var result = new StringBuilder();
-				
-				var encodingDescriptionNodes = _xmlNode.SelectNodes("encoding-description");
-
-				if (encodingDescriptionNodes != null)
-				{
-					foreach (XmlNode node in encodingDescriptionNodes)
-					{
-						result.AppendLine(node.InnerText);
-					}
-				}
-				
-				return result.ToString();
-			}
-		}
-
-		public DateTime? EncodingDate
-		{
-			get
-			{
-				var encodingDate = _xmlNode.SelectSingleNode("encoding-date");
-
-				if (encodingDate == null)
-				{
-					return null;
-				}
-
-				return Convert.ToDateTime(encodingDate.InnerText);
-			}
-		}
+		public string Software { get; internal set; }
+	
+		public string Description { get; internal set; }
+		
+		public DateTime? EncodingDate { get; internal set; }
+		
 	}
 }

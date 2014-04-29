@@ -1,41 +1,15 @@
-using System.Xml;
-
 namespace MusicXml.Domain
 {
 	public class Identification
 	{
-		private readonly XmlNode _node;
-
-		internal Identification(XmlNode node)
+		internal Identification()
 		{
-			_node = node;
 		}
 
-		public string Composer
-		{
-			get
-			{
-				var composerNode = _node.SelectSingleNode("creator[@type='composer']");
-				return composerNode != null ? composerNode.InnerText : string.Empty;
-			}
-		}
-
-		public string Rights
-		{
-			get
-			{
-				var rightsNode = _node.SelectSingleNode("rights");
-				return rightsNode != null ? rightsNode.InnerText : string.Empty;
-			}
-		}
-
-		public Encoding Encoding
-		{
-			get
-			{
-				var encodingNode = _node.SelectSingleNode("encoding");
-				return new Encoding(encodingNode);
-			}
-		}
+		public string Composer { get; internal set; }
+		
+		public string Rights { get; internal set; }
+		
+		public Encoding Encoding { get; internal set; }
 	}
 }

@@ -5,7 +5,7 @@ using MusicXml.Domain;
 
 namespace MusicXml
 {
-	public static class MusixXmlParser
+	public static class MusicXmlParser
 	{
 		public static Score GetScore(string filename)
 		{
@@ -17,8 +17,20 @@ namespace MusicXml
 			score.MovementTitle = movementTitleNode != null ? movementTitleNode.InnerText : string.Empty;
 			
 			var identificationNode = document.SelectSingleNode("score-partwise/identification");
-			score.Identification = new Identification(identificationNode);
-			
+			if (identificationNode != null)
+			{
+				score.Identification = new Identification();
+				
+				var composerNode = identificationNode.SelectSingleNode("creator[@type='composer']");
+				score.Identification.Composer = composerNode != null ? composerNode.InnerText : string.Empty;
+
+				var rightsNode = identificationNode.SelectSingleNode("rights");
+				score.Identification.Rights = rightsNode != null ? rightsNode.InnerText : string.Empty;
+
+				var encodingNode = identificationNode.SelectSingleNode("encoding");
+				score.Identification.Encoding = new Encoding(encodingNode);
+			}
+
 			var partNodes = document.SelectNodes("score-partwise/part-list/score-part");
 			
 			if (partNodes != null)

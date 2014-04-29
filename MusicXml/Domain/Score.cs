@@ -8,6 +8,7 @@ namespace MusicXml.Domain
 		{
 			Parts = new List<Part>();
 			MovementTitle = string.Empty;
+			Identification = new Identification();
 		}
 
 		public string MovementTitle { get; internal set; }

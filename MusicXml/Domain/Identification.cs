@@ -6,6 +6,7 @@ namespace MusicXml.Domain
 		{
 			Composer = string.Empty;
 			Rights = string.Empty;
+			Encoding = new Encoding();
 		}
 
 		public string Composer { get; internal set; }

@@ -8,6 +8,7 @@ namespace MusicXml.Domain
 		{
 			Width = -1;
 			Notes = new List<Note>();
+			Attributes = new MeasureAttributes();
 		}
 
 		public int Width { get; internal set; }

@@ -6,7 +6,9 @@ namespace MusicXml.Domain
 	{
 		internal Part()
 		{
-			Measures = new List<Measure>();
+			Id = string.Empty;
+			Name = string.Empty; 
+			Measures = new List<Measure>();	
 		}
 
 		public string Id { get; internal set; }

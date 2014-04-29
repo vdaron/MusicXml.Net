@@ -14,13 +14,14 @@ namespace MusicXml.Domain
 		{
 			Software = string.Empty;
 			Description = string.Empty;
+			EncodingDate = new DateTime();
 		}
 
 		public string Software { get; internal set; }
 	
 		public string Description { get; internal set; }
 		
-		public DateTime? EncodingDate { get; internal set; }
+		public DateTime EncodingDate { get; internal set; }
 		
 	}
 }

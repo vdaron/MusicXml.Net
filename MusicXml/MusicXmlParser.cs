@@ -1,5 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.IO;
 using System.Text;
 using System.Xml;
@@ -97,7 +96,6 @@ namespace MusicXml
 							part.Measures.Add(measure);
 						}
 					}
-
 				}
 			}
 
@@ -122,7 +120,41 @@ namespace MusicXml
 
 			var lyricNode = noteNode.SelectSingleNode("lyric");
 			if (lyricNode != null)
-				note.Lyric = new Lyric(lyricNode);
+			{
+				var lyric = new Lyric();
+
+				var syllabicNode = lyricNode.SelectSingleNode("syllabic");
+
+				var syllabicText = string.Empty;
+
+				if (syllabicNode != null)
+					syllabicText = syllabicNode.InnerText;
+
+				switch (syllabicText)
+				{
+					case "":
+						lyric.Syllabic = Syllabic.None;
+						break;
+					case "begin":
+						lyric.Syllabic = Syllabic.Begin;
+						break;
+					case "single":
+						lyric.Syllabic = Syllabic.Single;
+						break;
+					case "end":
+						lyric.Syllabic = Syllabic.End;
+						break;
+					case "middle":
+						lyric.Syllabic = Syllabic.Middle;
+						break;
+				}
+
+				var textNode = lyricNode.SelectSingleNode("text");
+				if (textNode != null)
+					lyric.Text = textNode.InnerText;
+
+				note.Lyric = lyric;
+			}
 
 			var pitchNode = noteNode.SelectSingleNode("pitch");
 			if (pitchNode != null)

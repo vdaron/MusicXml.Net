@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.IO;
 using System.Text;
 using System.Xml;
@@ -69,7 +70,7 @@ namespace MusicXml
 					{
 						foreach (XmlNode measureNode in measureNodes)
 						{
-							var measure = new Measure(measureNode);
+							var measure = new Measure();
 							
 							if (measureNode.Attributes != null)
 								measure.Width =  Convert.ToInt32(measureNode.Attributes["width"].InnerText);
@@ -100,6 +101,16 @@ namespace MusicXml
 									measure.Attributes.Clef = new Clef(clefNode);
 							}
 
+							var noteNodes = measureNode.SelectNodes("note");
+
+							if (noteNodes != null)
+							{
+								foreach (XmlNode note in noteNodes)
+								{
+									measure.Notes.Add(new Note(note));
+								}	
+							}
+								
 							part.Measures.Add(measure);
 						}
 					}

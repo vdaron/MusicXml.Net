@@ -39,7 +39,8 @@ namespace MusicXml
 					score.Identification.Encoding.Description = GetInnerTextOfChildTag(encodingNode, "encoding-description");
 					
 					var encodingDate = encodingNode.SelectSingleNode("encoding-date");
-					if (encodingDate != null) score.Identification.Encoding.EncodingDate = Convert.ToDateTime(encodingDate.InnerText);
+					if (encodingDate != null) 
+						score.Identification.Encoding.EncodingDate = Convert.ToDateTime(encodingDate.InnerText);
 				}
 			}
 
@@ -66,9 +67,40 @@ namespace MusicXml
 
 					if (measureNodes != null)
 					{
-						foreach (XmlNode measure in measureNodes)
+						foreach (XmlNode measureNode in measureNodes)
 						{
-							part.Measures.Add(new Measure(measure));
+							var measure = new Measure(measureNode);
+							
+							if (measureNode.Attributes != null)
+								measure.Width =  Convert.ToInt32(measureNode.Attributes["width"].InnerText);
+							
+							var attributesNode = measureNode.SelectSingleNode("attributes");
+
+							if (attributesNode != null)
+							{
+								measure.Attributes = new MeasureAttributes();
+
+								var divisionsNode = attributesNode.SelectSingleNode("divisions");
+								if (divisionsNode != null)
+									measure.Attributes.Divisions = Convert.ToInt32(divisionsNode.InnerText);
+
+								var keyNode = attributesNode.SelectSingleNode("key");
+
+								if (keyNode != null)
+									measure.Attributes.Key = new Key(keyNode);
+
+								var timeNode = attributesNode.SelectSingleNode("time");
+
+								if (timeNode != null)
+									measure.Attributes.Time = new Time(timeNode);
+
+								var clefNode = attributesNode.SelectSingleNode("clef");
+
+								if (clefNode != null)
+									measure.Attributes.Clef = new Clef(clefNode);
+							}
+
+							part.Measures.Add(measure);
 						}
 					}
 

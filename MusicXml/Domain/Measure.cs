@@ -11,19 +11,11 @@ namespace MusicXml.Domain
 		internal Measure(XmlNode measureNode)
 		{
 			_measureNode = measureNode;
+			Width = -1;
 		}
 
-		public int Width
-		{
-			get
-			{
-				if (_measureNode.Attributes == null)
-					return -1;
-
-				return Convert.ToInt32(_measureNode.Attributes["width"].InnerText);
-			}
-		}
-
+		public int Width { get; internal set; }
+		
 		public List<Note> Notes
 		{
 			get
@@ -43,14 +35,6 @@ namespace MusicXml.Domain
 			}
 		}
 
-		public MeasureAttributes Attributes
-		{
-			get
-			{
-				var attributesNode = _measureNode.SelectSingleNode("attributes");
-
-				return attributesNode == null ? null : new MeasureAttributes(attributesNode);
-			}
-		}
+		public MeasureAttributes Attributes { get; internal set; }
 	}
 }

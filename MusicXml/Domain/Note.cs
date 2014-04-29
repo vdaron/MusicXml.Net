@@ -1,3 +1,5 @@
+using System.Collections.Generic;
+
 namespace MusicXml.Domain
 {
 	public class Note
@@ -11,6 +13,7 @@ namespace MusicXml.Domain
 			IsChordTone = false;
 			Lyric = new Lyric();
 			Pitch = new Pitch();
+			CounterPoints = new List<Note>();
 		}
 
 		public string Type { get; internal set; }
@@ -26,5 +29,7 @@ namespace MusicXml.Domain
 		public int Staff { get; internal set; }
 
 		public bool IsChordTone { get; internal set; }
+
+		public List<Note> CounterPoints { get; internal set; }
 	}
 }

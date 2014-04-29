@@ -81,18 +81,18 @@ namespace MusicXml
 								measure.Attributes.Clef = GetClef(attributesNode);
 							}
 
-							var noteNodes = measureNode.SelectNodes("note");
+							var childNodes = measureNode.ChildNodes;
 
-							if (noteNodes != null)
+							foreach (XmlNode node in childNodes)
 							{
-								foreach (XmlNode noteNode in noteNodes)
+								if (node.Name == "note")
 								{
-									var note = GetNode(noteNode);
+									var note = GetNode(node);
 
 									measure.Notes.Add(note);
 								}
 							}
-								
+
 							part.Measures.Add(measure);
 						}
 					}

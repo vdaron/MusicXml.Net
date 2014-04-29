@@ -5,6 +5,7 @@ namespace MusicXml.Domain
 		internal Key()
 		{
 			Fifths = 0;
+			Mode = string.Empty;
 		}
 
 		public int Fifths { get; internal set; }

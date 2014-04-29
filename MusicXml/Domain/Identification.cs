@@ -4,6 +4,8 @@ namespace MusicXml.Domain
 	{
 		internal Identification()
 		{
+			Composer = string.Empty;
+			Rights = string.Empty;
 		}
 
 		public string Composer { get; internal set; }

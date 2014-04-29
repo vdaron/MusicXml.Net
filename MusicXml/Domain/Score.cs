@@ -7,6 +7,7 @@ namespace MusicXml.Domain
 		internal Score()
 		{
 			Parts = new List<Part>();
+			MovementTitle = string.Empty;
 		}
 
 		public string MovementTitle { get; internal set; }

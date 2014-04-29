@@ -17,34 +17,11 @@ namespace MusicXml
 			var score = new Score();
 
 			var movementTitleNode = document.SelectSingleNode("score-partwise/movement-title");
-			score.MovementTitle = movementTitleNode != null ? movementTitleNode.InnerText : string.Empty;
+			if (movementTitleNode != null)
+				score.MovementTitle = movementTitleNode.InnerText;
+
+			score.Identification = GetIdentification(document);
 			
-			var identificationNode = document.SelectSingleNode("score-partwise/identification");
-			if (identificationNode != null)
-			{
-				score.Identification = new Identification();
-				
-				var composerNode = identificationNode.SelectSingleNode("creator[@type='composer']");
-				score.Identification.Composer = composerNode != null ? composerNode.InnerText : string.Empty;
-
-				var rightsNode = identificationNode.SelectSingleNode("rights");
-				score.Identification.Rights = rightsNode != null ? rightsNode.InnerText : string.Empty;
-
-				var encodingNode = identificationNode.SelectSingleNode("encoding");
-				score.Identification.Encoding = new Encoding();
-
-				if (encodingNode != null)
-				{
-					score.Identification.Encoding.Software = GetInnerTextOfChildTag(encodingNode, "software");
-
-					score.Identification.Encoding.Description = GetInnerTextOfChildTag(encodingNode, "encoding-description");
-					
-					var encodingDate = encodingNode.SelectSingleNode("encoding-date");
-					if (encodingDate != null) 
-						score.Identification.Encoding.EncodingDate = Convert.ToDateTime(encodingDate.InnerText);
-				}
-			}
-
 			var partNodes = document.SelectNodes("score-partwise/part-list/score-part");
 			
 			if (partNodes != null)
@@ -129,6 +106,48 @@ namespace MusicXml
 			}
 
 			return score;
+		}
+
+		private static Identification GetIdentification(XmlNode document)
+		{
+			var identificationNode = document.SelectSingleNode("score-partwise/identification");
+
+			if (identificationNode != null)
+			{
+				var identification = new Identification();
+
+				var composerNode = identificationNode.SelectSingleNode("creator[@type='composer']");
+				identification.Composer = composerNode != null ? composerNode.InnerText : string.Empty;
+
+				var rightsNode = identificationNode.SelectSingleNode("rights");
+				identification.Rights = rightsNode != null ? rightsNode.InnerText : string.Empty;
+
+				identification.Encoding = GetEncoding(identificationNode);
+
+				return identification;
+			}
+
+			return null;
+		}
+
+		private static Encoding GetEncoding(XmlNode identificationNode)
+		{
+			var encodingNode = identificationNode.SelectSingleNode("encoding");
+
+			var encoding = new Encoding();
+
+			if (encodingNode != null)
+			{
+				encoding.Software = GetInnerTextOfChildTag(encodingNode, "software");
+
+				encoding.Description = GetInnerTextOfChildTag(encodingNode, "encoding-description");
+
+				var encodingDate = encodingNode.SelectSingleNode("encoding-date");
+				if (encodingDate != null)
+					encoding.EncodingDate = Convert.ToDateTime(encodingDate.InnerText);
+			}
+
+			return encoding;
 		}
 
 		private static string GetInnerTextOfChildTag(XmlNode encodingNode, string tagName)

@@ -12,6 +12,8 @@ namespace MusicXml.Domain
 	{
 		internal Encoding()
 		{
+			Software = string.Empty;
+			Description = string.Empty;
 		}
 
 		public string Software { get; internal set; }

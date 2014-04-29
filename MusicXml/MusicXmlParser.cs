@@ -76,11 +76,8 @@ namespace MusicXml
 									if (modeNode != null)
 										measure.Attributes.Key.Mode = modeNode.InnerText;
 								}
-									
-								var timeNode = attributesNode.SelectSingleNode("time");
-
-								if (timeNode != null)
-									measure.Attributes.Time = new Time(timeNode);
+								
+								measure.Attributes.Time = GetTime(attributesNode);
 
 								var clefNode = attributesNode.SelectSingleNode("clef");
 
@@ -106,6 +103,51 @@ namespace MusicXml
 			}
 
 			return score;
+		}
+
+		private static Time GetTime(XmlNode attributesNode)
+		{
+			var time = new Time();
+
+			var timeNode = attributesNode.SelectSingleNode("time");
+			if (timeNode != null)
+			{
+				var beatsNode = timeNode.SelectSingleNode("beats");
+
+				if (beatsNode != null)
+					time.Beats = Convert.ToInt32(beatsNode.InnerText);
+
+				var beatTypeNode = timeNode.SelectSingleNode("beat-type");
+
+				if (beatTypeNode != null)
+					time.Mode = beatTypeNode.InnerText;
+
+				var symbol = TimeSymbol.Normal;
+
+				if (timeNode.Attributes != null)
+				{
+					var symbolAttribute = timeNode.Attributes["symbol"];
+
+					if (symbolAttribute != null)
+					{
+						switch (symbolAttribute.InnerText)
+						{
+							case "common":
+								symbol = TimeSymbol.Common;
+								break;
+							case "cut":
+								symbol = TimeSymbol.Cut;
+								break;
+							case "single-number":
+								symbol = TimeSymbol.SingleNumber;
+								break;
+						}
+					}
+				}
+
+				time.Symbol = symbol;
+			}
+			return time;
 		}
 
 		private static Identification GetIdentification(XmlNode document)

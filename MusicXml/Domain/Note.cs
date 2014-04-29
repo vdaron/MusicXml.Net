@@ -30,6 +30,8 @@ namespace MusicXml.Domain
 
 		public bool IsChordTone { get; internal set; }
 
+		// CounterPoints are notes that appear at the exact same time as other notes. 
+		// Using the term counterpoint may not be accurate from a Music Theory standpoint in all cases; I needed something to call such notes.
 		public List<Note> CounterPoints { get; internal set; }
 	}
 }

@@ -393,7 +393,7 @@ namespace MusicXml.Unit.Tests
 
 			Assert.That(note.CounterPoints, Is.Not.Null);
 		}
-
+		
 		[Test]
 		public void Note_pitch_is_not_null()
 		{

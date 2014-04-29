@@ -120,9 +120,7 @@ namespace MusicXml
 
 			note.Lyric = GetLyric(noteNode);
 
-			var pitchNode = noteNode.SelectSingleNode("pitch");
-			if (pitchNode != null)
-				note.Pitch = new Pitch(pitchNode);
+			note.Pitch = GetPtich(noteNode);
 
 			var staffNode = noteNode.SelectSingleNode("staff");
 			if (staffNode != null)
@@ -132,6 +130,27 @@ namespace MusicXml
 			if (chordNode != null)
 				note.IsChordTone = true;
 			return note;
+		}
+
+		private static Pitch GetPtich(XmlNode noteNode)
+		{
+			var pitch = new Pitch();
+			var pitchNode = noteNode.SelectSingleNode("pitch");
+			if (pitchNode != null)
+			{
+				var stepNode = pitchNode.SelectSingleNode("step");
+				if (stepNode != null)
+					pitch.Step = stepNode.InnerText[0];
+
+				var alterNode = pitchNode.SelectSingleNode("alter");
+				if (alterNode != null)
+					pitch.Alter = Convert.ToInt32(alterNode.InnerText);
+
+				var octaveNode = pitchNode.SelectSingleNode("octave");
+				if (octaveNode != null)
+					pitch.Octave = Convert.ToInt32(octaveNode.InnerText);
+			}
+			return pitch;
 		}
 
 		private static Lyric GetLyric(XmlNode noteNode)

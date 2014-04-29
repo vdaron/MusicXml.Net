@@ -86,10 +86,12 @@ namespace MusicXml
 
 							if (noteNodes != null)
 							{
-								foreach (XmlNode note in noteNodes)
+								foreach (XmlNode noteNode in noteNodes)
 								{
-									measure.Notes.Add(new Note(note));
-								}	
+									var note = GetNode(noteNode);
+
+									measure.Notes.Add(note);
+								}
 							}
 								
 							part.Measures.Add(measure);
@@ -100,6 +102,40 @@ namespace MusicXml
 			}
 
 			return score;
+		}
+
+		private static Note GetNode(XmlNode noteNode)
+		{
+			var note = new Note();
+
+			var typeNode = noteNode.SelectSingleNode("type");
+			if (typeNode != null)
+				note.Type = typeNode.InnerText;
+
+			var voiceNode = noteNode.SelectSingleNode("voice");
+			if (voiceNode != null)
+				note.Voice = Convert.ToInt32(voiceNode.InnerText);
+
+			var durationNode = noteNode.SelectSingleNode("duration");
+			if (durationNode != null)
+				note.Duration = Convert.ToInt32(durationNode.InnerText);
+
+			var lyricNode = noteNode.SelectSingleNode("lyric");
+			if (lyricNode != null)
+				note.Lyric = new Lyric(lyricNode);
+
+			var pitchNode = noteNode.SelectSingleNode("pitch");
+			if (pitchNode != null)
+				note.Pitch = new Pitch(pitchNode);
+
+			var staffNode = noteNode.SelectSingleNode("staff");
+			if (staffNode != null)
+				note.Staff = Convert.ToInt32(staffNode.InnerText);
+
+			var chordNode = noteNode.SelectSingleNode("chord");
+			if (chordNode != null)
+				note.IsChordTone = true;
+			return note;
 		}
 
 		private static Clef GetClef(XmlNode attributesNode)

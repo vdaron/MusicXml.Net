@@ -88,8 +88,18 @@ namespace MusicXml
 								var keyNode = attributesNode.SelectSingleNode("key");
 
 								if (keyNode != null)
-									measure.Attributes.Key = new Key(keyNode);
+								{
+									measure.Attributes.Key = new Key();
 
+									var fifthsNode = keyNode.SelectSingleNode("fifths");
+									if (fifthsNode != null)
+										measure.Attributes.Key.Fifths = Convert.ToInt32(fifthsNode.InnerText);
+
+									var modeNode = keyNode.SelectSingleNode("mode");
+									if (modeNode != null)
+										measure.Attributes.Key.Mode = modeNode.InnerText;
+								}
+									
 								var timeNode = attributesNode.SelectSingleNode("time");
 
 								if (timeNode != null)

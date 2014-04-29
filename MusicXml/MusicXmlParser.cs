@@ -79,10 +79,7 @@ namespace MusicXml
 								
 								measure.Attributes.Time = GetTime(attributesNode);
 
-								var clefNode = attributesNode.SelectSingleNode("clef");
-
-								if (clefNode != null)
-									measure.Attributes.Clef = new Clef(clefNode);
+								measure.Attributes.Clef = GetClef(attributesNode);
 							}
 
 							var noteNodes = measureNode.SelectNodes("note");
@@ -103,6 +100,25 @@ namespace MusicXml
 			}
 
 			return score;
+		}
+
+		private static Clef GetClef(XmlNode attributesNode)
+		{
+			var clef = new Clef();
+
+			var clefNode = attributesNode.SelectSingleNode("clef");
+
+			if (clefNode != null)
+			{
+				var lineNode = clefNode.SelectSingleNode("line");
+				if (lineNode != null)
+					clef.Line = Convert.ToInt32(lineNode.InnerText);
+
+				var signNode = clefNode.SelectSingleNode("sign");
+				if (signNode != null)
+					clef.Sign = signNode.InnerText;
+			}
+			return clef;
 		}
 
 		private static Time GetTime(XmlNode attributesNode)

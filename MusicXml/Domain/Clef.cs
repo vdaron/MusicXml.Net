@@ -1,38 +1,15 @@
-using System;
-using System.Xml;
-
 namespace MusicXml.Domain
 {
 	public class Clef
 	{
-		private readonly XmlNode _clefNode;
-
-		internal Clef(XmlNode clefNode)
+		internal Clef()
 		{
-			_clefNode = clefNode;
+			Line = 0;
+			Sign = string.Empty;
 		}
 
-		public int Line
-		{
-			get
-			{
-				var lineNode = _clefNode.SelectSingleNode("line");
-				if (lineNode == null)
-					return 0;
-
-				return Convert.ToInt32(lineNode.InnerText);
-			}
-		}
-		public string Sign
-		{
-			get
-			{
-				var signNode = _clefNode.SelectSingleNode("sign");
-				if (signNode == null)
-					return string.Empty;
-
-				return signNode.InnerText;
-			}
-		}
+		public int Line { get; internal set; }
+		
+		public string Sign { get; internal set; }
 	}
 }

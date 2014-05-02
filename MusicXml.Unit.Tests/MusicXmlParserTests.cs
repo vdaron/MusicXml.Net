@@ -280,10 +280,19 @@ namespace MusicXml.Unit.Tests
 			var part = _scoreWithStaffValues.Parts[0];
 
 			var measure = part.Measures[0];
-
 			var time = measure.Attributes.Time;
 
 			Assert.That(time.Symbol, Is.EqualTo(TimeSymbol.Normal));
+		}
+
+		[Test]
+		public void Notes_in_order_of_time_is_not_null()
+		{
+			var part = _scoreWithStaffValues.Parts[0];
+
+			var measure = part.Measures[0];
+
+			Assert.That(measure.NotesInOrderOfTime, Is.Not.Null);
 		}
 
 		[Test]
@@ -292,7 +301,6 @@ namespace MusicXml.Unit.Tests
 			var part = _scoreWithStaffValues.Parts[0];
 
 			var measure = part.Measures[0];
-
 			var note = measure.Notes[0];
 
 			Assert.That(note, Is.Not.Null);
@@ -304,7 +312,6 @@ namespace MusicXml.Unit.Tests
 			var part = _scoreWithStaffValues.Parts[0];
 
 			var measure = part.Measures[0];
-
 			var note = measure.Notes[0];
 
 			const int knownDuration = 2;
@@ -318,7 +325,6 @@ namespace MusicXml.Unit.Tests
 			var part = _scoreWithStaffValues.Parts[0];
 
 			var measure = part.Measures[0];
-
 			var note = measure.Notes[0];
 
 			const string knownNoteType = "16th";

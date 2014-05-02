@@ -9,6 +9,7 @@ namespace MusicXml.Domain
 			Width = -1;
 			Notes = new List<Note>();
 			Attributes = new MeasureAttributes();
+			NotesInOrderOfTime = new List<List<Note>>();
 		}
 
 		public int Width { get; internal set; }
@@ -16,5 +17,7 @@ namespace MusicXml.Domain
 		public List<Note> Notes { get; internal set; }
 		
 		public MeasureAttributes Attributes { get; internal set; }
+
+		public List<List<Note>> NotesInOrderOfTime { get; internal set; }
 	}
 }

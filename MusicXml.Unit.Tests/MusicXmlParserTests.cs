@@ -295,6 +295,17 @@ namespace MusicXml.Unit.Tests
 			Assert.That(measure.UpperStaffNotesInOrderOfTime, Is.Not.Null);
 		}
 
+		[Test]
+		public void Measure_without_width_attribute_returns_negative_one()
+		{
+			var scoreWithoutMeasureWidthAttribute = MusicXmlParser.GetScore(@"TestData\MusicXmlWithoutMeasureWidthAttribute.xml");
+
+			var part = scoreWithoutMeasureWidthAttribute.Parts[0];
+
+			var measure = part.Measures[0];
+
+			Assert.That(measure.Width, Is.EqualTo(-1));
+		}
 
 		[Test]
 		public void Notes_in_order_of_time_has_correct_count()

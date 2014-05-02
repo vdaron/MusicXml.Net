@@ -48,10 +48,14 @@ namespace MusicXml
 						foreach (XmlNode measureNode in measureNodes)
 						{
 							var measure = new Measure();
-							
+
 							if (measureNode.Attributes != null)
-								measure.Width =  Convert.ToInt32(measureNode.Attributes["width"].InnerText);
-							
+							{
+								var measureWidthAttribute = measureNode.Attributes["width"];
+								if (measureWidthAttribute != null)
+									measure.Width = Convert.ToInt32(measureWidthAttribute.InnerText);
+							}
+
 							var attributesNode = measureNode.SelectSingleNode("attributes");
 
 							if (attributesNode != null)

@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.IO;
 using System.Text;
 using System.Xml;
@@ -83,13 +84,56 @@ namespace MusicXml
 
 							var childNodes = measureNode.ChildNodes;
 
+							var postion = 0;
+
 							foreach (XmlNode node in childNodes)
 							{
 								if (node.Name == "note")
 								{
-									var note = GetNode(node);
+									var newNote = GetNode(node);
+									
+									measure.Notes.Add(newNote);
 
-									measure.Notes.Add(note);
+									if (newNote.Staff == 1)
+									{
+										
+										if (measure.UpperStaffNotesInOrderOfTime.ContainsKey(postion))
+										{
+											var notesAtPosition = measure.UpperStaffNotesInOrderOfTime[postion];
+
+											var indexToInsert = 0;
+
+											for (var i = 0; i < notesAtPosition.Count; i++)
+											{
+												var note = notesAtPosition[i];
+												if (note.Pitch.Octave < newNote.Pitch.Octave)
+												{
+													indexToInsert = i;
+												}
+											}
+
+											notesAtPosition.Insert(indexToInsert, newNote);
+										}
+										else
+										{
+											measure.UpperStaffNotesInOrderOfTime.Add(postion, 
+												new List<Note>
+												{
+													newNote
+												});
+										}
+									}
+
+									postion += newNote.Duration;
+								}
+
+								if (node.Name == "backup")
+								{
+									postion -= GetDuration(node);
+								}
+								if (node.Name == "forward")
+								{
+									postion += GetDuration(node);
 								}
 							}
 
@@ -100,6 +144,15 @@ namespace MusicXml
 			}
 
 			return score;
+		}
+
+		private static int GetDuration(XmlNode node)
+		{
+			var durationNode = node.SelectSingleNode("duration");
+			if (durationNode != null)
+				return Convert.ToInt32(durationNode.InnerText);
+
+			return 0;
 		}
 
 		private static Note GetNode(XmlNode noteNode)

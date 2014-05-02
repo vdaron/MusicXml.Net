@@ -1,5 +1,3 @@
-using System.Collections.Generic;
-
 namespace MusicXml.Domain
 {
 	public class Note

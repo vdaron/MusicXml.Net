@@ -292,9 +292,60 @@ namespace MusicXml.Unit.Tests
 
 			var measure = part.Measures[0];
 
-			Assert.That(measure.NotesInOrderOfTime, Is.Not.Null);
+			Assert.That(measure.UpperStaffNotesInOrderOfTime, Is.Not.Null);
 		}
 
+
+		[Test]
+		public void Notes_in_order_of_time_has_correct_count()
+		{
+			const int knownPart = 1;
+			const int knownMeasure = 26;
+			const int knownNotesInTopStaff = 4;
+			
+			var part = _scoreWithStaffValues.Parts[knownPart];
+			var measure = part.Measures[knownMeasure];
+			var notesInOrderOfTime = measure.UpperStaffNotesInOrderOfTime;
+			
+			Assert.That(notesInOrderOfTime.Count, Is.EqualTo(knownNotesInTopStaff));
+		}
+
+		[Test]
+		public void Lowest_note_at_first_position_in_order_of_time_is_C()
+		{
+			const int knownPartWithBackupTag = 1;
+			const int knownMeasureWithBackupTag = 1;
+			const int knownPositionOfFirstNote = 0;
+			const int knownIndexOfLowestNote = 0;
+
+			var part = _scoreWithStaffValues.Parts[knownPartWithBackupTag];
+			var measure = part.Measures[knownMeasureWithBackupTag];
+			var notesInOrderOfTime = measure.UpperStaffNotesInOrderOfTime;
+			
+			var position = notesInOrderOfTime[knownPositionOfFirstNote];
+			var note = position[knownIndexOfLowestNote];
+
+			Assert.That(note.Pitch.Step, Is.EqualTo('C'));
+		}
+
+		[Test]
+		public void Lowest_note_at_given_position_in_order_of_time_is_F()
+		{
+			const int knownPartWithBackupTag = 1;
+			const int knownMeasureWithBackupTag = 1;
+			const int knownPostionOfSecondNote = 8;
+			const int knownIndexOfLowestNote = 0;
+
+			var part = _scoreWithStaffValues.Parts[knownPartWithBackupTag];
+			var measure = part.Measures[knownMeasureWithBackupTag];
+			var notesInOrderOfTime = measure.UpperStaffNotesInOrderOfTime;
+			
+			var position = notesInOrderOfTime[knownPostionOfSecondNote];
+			var note = position[knownIndexOfLowestNote];
+
+			Assert.That(note.Pitch.Step, Is.EqualTo('F'));
+		}
+		
 		[Test]
 		public void Note_is_not_null()
 		{

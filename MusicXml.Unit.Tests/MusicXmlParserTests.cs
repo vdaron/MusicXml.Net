@@ -383,18 +383,6 @@ namespace MusicXml.Unit.Tests
 		}
 
 		[Test]
-		public void Counter_points_is_not_null()
-		{
-			var score = MusicXmlParser.GetScore("TestData/MusicXmlWithChords.xml");
-
-			var part = score.Parts[0];
-			var measure = part.Measures[0];
-			var note = measure.Notes[0];
-
-			Assert.That(note.CounterPoints, Is.Not.Null);
-		}
-		
-		[Test]
 		public void Note_pitch_is_not_null()
 		{
 			const int measureContainingNotesWithPitches = 4;

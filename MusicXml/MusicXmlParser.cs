@@ -177,7 +177,7 @@ namespace MusicXml
 
 			note.Lyric = GetLyric(noteNode);
 
-			note.Pitch = GetPtich(noteNode);
+			note.Pitch = GetPitch(noteNode);
 
 			var staffNode = noteNode.SelectSingleNode("staff");
 			if (staffNode != null)
@@ -194,7 +194,7 @@ namespace MusicXml
 			return note;
 		}
 
-		private static Pitch GetPtich(XmlNode noteNode)
+		private static Pitch GetPitch(XmlNode noteNode)
 		{
 			var pitch = new Pitch();
 			var pitchNode = noteNode.SelectSingleNode("pitch");

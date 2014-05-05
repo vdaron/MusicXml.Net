@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Linq;
 using MusicXml.Domain;
 using NUnit.Framework;
 
@@ -294,7 +295,7 @@ namespace MusicXml.Unit.Tests
 
 			Assert.That(measure.UpperStaffNotesInOrderOfTime, Is.Not.Null);
 		}
-
+		
 		[Test]
 		public void Measure_without_width_attribute_returns_negative_one()
 		{
@@ -556,5 +557,17 @@ namespace MusicXml.Unit.Tests
 
 			Assert.That(lyric.Text, Is.EqualTo(knownLyricText));
 		}
+
+		[Test]
+		public void Populates_is_rest()
+		{
+			const int knownMeasureContainingRest = 0;
+			var part = _scoreWithStaffValues.Parts[0];
+			var measure = part.Measures[knownMeasureContainingRest];
+			var note = measure.Notes[0];
+
+			Assert.That(note.IsRest, Is.True);
+		}
+
 	}
 }

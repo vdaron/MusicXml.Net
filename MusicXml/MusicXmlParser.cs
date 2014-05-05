@@ -186,6 +186,11 @@ namespace MusicXml
 			var chordNode = noteNode.SelectSingleNode("chord");
 			if (chordNode != null)
 				note.IsChordTone = true;
+			
+			var restNode = noteNode.SelectSingleNode("rest");
+			if (restNode != null)
+				note.IsRest = true;
+
 			return note;
 		}
 

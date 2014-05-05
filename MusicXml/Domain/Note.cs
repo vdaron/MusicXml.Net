@@ -26,5 +26,7 @@ namespace MusicXml.Domain
 		public int Staff { get; internal set; }
 
 		public bool IsChordTone { get; internal set; }
+
+		public bool IsRest { get; internal set; }
 	}
 }

@@ -5,9 +5,6 @@ namespace MusicXml.Domain
 		internal MeasureAttributes()
 		{
 			Divisions = 0;
-			Key = new Key();
-			Time = new Time();
-			Clef = new Clef();
 		}
 
 		public int Divisions { get; internal set; }

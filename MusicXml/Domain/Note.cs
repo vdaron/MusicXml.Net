@@ -9,8 +9,6 @@ namespace MusicXml.Domain
 			Voice = -1;
 			Staff = -1;
 			IsChordTone = false;
-			Lyric = new Lyric();
-			Pitch = new Pitch();
 		}
 
 		public string Type { get; internal set; }

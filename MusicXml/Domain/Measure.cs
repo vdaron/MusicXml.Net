@@ -8,7 +8,6 @@ namespace MusicXml.Domain
 		{
 			Width = -1;
 			Notes = new List<Note>();
-			Attributes = new MeasureAttributes();
 			UpperStaffNotesInOrderOfTime = new Dictionary<int, List<Note>>();
 		}
 

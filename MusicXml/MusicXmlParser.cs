@@ -94,11 +94,11 @@ namespace MusicXml
 							{
 								if (node.Name == "note")
 								{
-									var newNote = GetNode(node);
+									var newNote = GetNote(node);
 									
 									measure.Notes.Add(newNote);
 
-									if (newNote.Staff == 1)
+									if (newNote.Staff == 1 || newNote.IsRest)
 									{
 										
 										if (measure.UpperStaffNotesInOrderOfTime.ContainsKey(postion))
@@ -159,7 +159,7 @@ namespace MusicXml
 			return 0;
 		}
 
-		private static Note GetNode(XmlNode noteNode)
+		private static Note GetNote(XmlNode noteNode)
 		{
 			var note = new Note();
 

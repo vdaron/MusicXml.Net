@@ -295,6 +295,18 @@ namespace MusicXml.Unit.Tests
 
 			Assert.That(measure.UpperStaffNotesInOrderOfTime, Is.Not.Null);
 		}
+
+		[Test]
+		public void Upper_staff_notes_in_order_of_time_contains_rests()
+		{
+			var part = _scoreWithStaffValues.Parts[0];
+
+			var measure = part.Measures[0];
+
+			var notesInOrderOfTime = measure.UpperStaffNotesInOrderOfTime;
+
+			Assert.That(notesInOrderOfTime.Count, Is.GreaterThan(0));
+		}
 		
 		[Test]
 		public void Measure_without_width_attribute_returns_negative_one()

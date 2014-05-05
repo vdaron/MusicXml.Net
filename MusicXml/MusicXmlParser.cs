@@ -98,7 +98,7 @@ namespace MusicXml
 									
 									measure.Notes.Add(newNote);
 
-									if (newNote.Staff == 1 || newNote.IsRest)
+									if (newNote.Staff == 1 && !newNote.IsRest)
 									{
 										
 										if (measure.UpperStaffNotesInOrderOfTime.ContainsKey(postion))
@@ -212,6 +212,11 @@ namespace MusicXml
 				if (octaveNode != null)
 					pitch.Octave = Convert.ToInt32(octaveNode.InnerText);
 			}
+			else
+			{
+				return null;
+			}
+
 			return pitch;
 		}
 

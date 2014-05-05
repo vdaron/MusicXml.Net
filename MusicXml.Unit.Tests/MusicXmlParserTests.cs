@@ -296,7 +296,7 @@ namespace MusicXml.Unit.Tests
 		}
 
 		[Test]
-		public void Upper_staff_notes_in_order_of_time_contains_rests()
+		public void Upper_staff_notes_in_order_of_time_does_not_contain_rests()
 		{
 			var part = _scoreWithStaffValues.Parts[0];
 
@@ -304,7 +304,7 @@ namespace MusicXml.Unit.Tests
 
 			var notesInOrderOfTime = measure.UpperStaffNotesInOrderOfTime;
 
-			Assert.That(notesInOrderOfTime.Count, Is.GreaterThan(0));
+			Assert.That(notesInOrderOfTime.Count, Is.EqualTo(0));
 		}
 		
 		[Test]
@@ -579,6 +579,16 @@ namespace MusicXml.Unit.Tests
 
 			Assert.That(note.IsRest, Is.True);
 		}
+		
+		[Test]
+		public void Pitch_is_null_note_with_rest()
+		{
+			const int knownMeasureContainingRest = 0;
+			var part = _scoreWithStaffValues.Parts[0];
+			var measure = part.Measures[knownMeasureContainingRest];
+			var note = measure.Notes[0];
 
+			Assert.That(note.Pitch, Is.Null);
+		}
 	}
 }

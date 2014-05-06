@@ -132,7 +132,6 @@ namespace MusicXml.Unit.Tests
 
 			Assert.That(measure.Width, Is.EqualTo(knownWidth));
 		}
-
 		
 		[Test]
 		public void Measure_attributes_is_not_null()
@@ -284,28 +283,6 @@ namespace MusicXml.Unit.Tests
 
 			Assert.That(time.Symbol, Is.EqualTo(TimeSymbol.Normal));
 		}
-
-		[Test]
-		public void Notes_in_order_of_time_is_not_null()
-		{
-			var part = _scoreWithStaffValues.Parts[0];
-
-			var measure = part.Measures[0];
-
-			Assert.That(measure.UpperStaffNotesInOrderOfTime, Is.Not.Null);
-		}
-
-		[Test]
-		public void Upper_staff_notes_in_order_of_time_does_not_contain_rests()
-		{
-			var part = _scoreWithStaffValues.Parts[0];
-
-			var measure = part.Measures[0];
-
-			var notesInOrderOfTime = measure.UpperStaffNotesInOrderOfTime;
-
-			Assert.That(notesInOrderOfTime.Count, Is.EqualTo(0));
-		}
 		
 		[Test]
 		public void Measure_without_width_attribute_returns_negative_one()
@@ -318,56 +295,6 @@ namespace MusicXml.Unit.Tests
 
 			Assert.That(measure.Width, Is.EqualTo(-1));
 		}
-
-		[Test]
-		public void Notes_in_order_of_time_has_correct_count()
-		{
-			const int knownPart = 1;
-			const int knownMeasure = 26;
-			const int knownNotesInTopStaff = 4;
-			
-			var part = _scoreWithStaffValues.Parts[knownPart];
-			var measure = part.Measures[knownMeasure];
-			var notesInOrderOfTime = measure.UpperStaffNotesInOrderOfTime;
-			
-			Assert.That(notesInOrderOfTime.Count, Is.EqualTo(knownNotesInTopStaff));
-		}
-
-		[Test]
-		public void Lowest_note_at_first_position_in_order_of_time_is_C()
-		{
-			const int knownPartWithBackupTag = 1;
-			const int knownMeasureWithBackupTag = 1;
-			const int knownPositionOfFirstNote = 0;
-			const int knownIndexOfLowestNote = 0;
-
-			var part = _scoreWithStaffValues.Parts[knownPartWithBackupTag];
-			var measure = part.Measures[knownMeasureWithBackupTag];
-			var notesInOrderOfTime = measure.UpperStaffNotesInOrderOfTime;
-			
-			var position = notesInOrderOfTime[knownPositionOfFirstNote];
-			var note = position[knownIndexOfLowestNote];
-
-			Assert.That(note.Pitch.Step, Is.EqualTo('C'));
-		}
-
-		[Test]
-		public void Lowest_note_at_given_position_in_order_of_time_is_F()
-		{
-			const int knownPartWithBackupTag = 1;
-			const int knownMeasureWithBackupTag = 1;
-			const int knownPostionOfSecondNote = 8;
-			const int knownIndexOfLowestNote = 0;
-
-			var part = _scoreWithStaffValues.Parts[knownPartWithBackupTag];
-			var measure = part.Measures[knownMeasureWithBackupTag];
-			var notesInOrderOfTime = measure.UpperStaffNotesInOrderOfTime;
-			
-			var position = notesInOrderOfTime[knownPostionOfSecondNote];
-			var note = position[knownIndexOfLowestNote];
-
-			Assert.That(note.Pitch.Step, Is.EqualTo('F'));
-		}
 		
 		[Test]
 		public void Note_is_not_null()
@@ -375,7 +302,7 @@ namespace MusicXml.Unit.Tests
 			var part = _scoreWithStaffValues.Parts[0];
 
 			var measure = part.Measures[0];
-			var note = measure.Notes[0];
+			var note = measure.MeasureElements[0];
 
 			Assert.That(note, Is.Not.Null);
 		}
@@ -386,7 +313,7 @@ namespace MusicXml.Unit.Tests
 			var part = _scoreWithStaffValues.Parts[0];
 
 			var measure = part.Measures[0];
-			var note = measure.Notes[0];
+			var note = measure.MeasureElements[0].Element as Note;
 
 			const int knownDuration = 2;
 
@@ -399,7 +326,7 @@ namespace MusicXml.Unit.Tests
 			var part = _scoreWithStaffValues.Parts[0];
 
 			var measure = part.Measures[0];
-			var note = measure.Notes[0];
+			var note = measure.MeasureElements[0].Element as Note;
 
 			const string knownNoteType = "16th";
 
@@ -413,7 +340,7 @@ namespace MusicXml.Unit.Tests
 
 			var measure = part.Measures[0];
 
-			var note = measure.Notes[0];
+			var note = measure.MeasureElements[0].Element as Note;
 
 			const int knownNoteVoice = 1;
 
@@ -430,7 +357,7 @@ namespace MusicXml.Unit.Tests
 
 			var part = _scoreWithStaffValues.Parts[knownPartWithStaffTags];
 			var measure = part.Measures[knownMeasureWithStaffTags];
-			var note = measure.Notes[firstNoteIndex];
+			var note = measure.MeasureElements[firstNoteIndex].Element as Note;
 
 			Assert.That(note.Staff, Is.EqualTo(knownStaffValue));
 		}
@@ -445,7 +372,7 @@ namespace MusicXml.Unit.Tests
 
 			var part = score.Parts[knownPartWithChord];
 			var measure = part.Measures[0];
-			var note = measure.Notes[knownChordToneIndex];
+			var note = measure.MeasureElements[knownChordToneIndex].Element as Note;
 
 			Assert.That(note.IsChordTone, Is.True);
 		}
@@ -457,7 +384,7 @@ namespace MusicXml.Unit.Tests
 
 			var part = score.Parts[0];
 			var measure = part.Measures[0];
-			var note = measure.Notes[0];
+			var note = measure.MeasureElements[0].Element as Note;
 
 			Assert.That(note.IsChordTone, Is.False);
 		}
@@ -470,7 +397,7 @@ namespace MusicXml.Unit.Tests
 
 			var part = _scoreWithStaffValues.Parts[0];
 			var measure = part.Measures[measureContainingNotesWithPitches];
-			var note = measure.Notes[noteWithPitchTag];
+			var note = measure.MeasureElements[noteWithPitchTag].Element as Note;
 
 			Assert.That(note.Pitch, Is.Not.Null);
 		}
@@ -483,7 +410,7 @@ namespace MusicXml.Unit.Tests
 
 			var part = _scoreWithStaffValues.Parts[0];
 			var measure = part.Measures[measureContainingNotesWithPitches];
-			var note = measure.Notes[noteWithPitchTag];
+			var note = measure.MeasureElements[noteWithPitchTag].Element as Note;
 			var pitch = note.Pitch;
 
 			const int knownAlter = 1;
@@ -499,7 +426,7 @@ namespace MusicXml.Unit.Tests
 
 			var part = _scoreWithStaffValues.Parts[0];
 			var measure = part.Measures[measureContainingNotesWithPitches];
-			var note = measure.Notes[noteWithPitchTag];
+			var note = measure.MeasureElements[noteWithPitchTag].Element as Note;
 			var pitch = note.Pitch;
 
 			const int knownOctave = 5;
@@ -515,7 +442,7 @@ namespace MusicXml.Unit.Tests
 
 			var part = _scoreWithStaffValues.Parts[0];
 			var measure = part.Measures[measureContainingNotesWithPitches];
-			var note = measure.Notes[noteWithPitchTag];
+			var note = measure.MeasureElements[noteWithPitchTag].Element as Note;
 			var pitch = note.Pitch;
 
 			const char knownStep = 'C';
@@ -531,7 +458,7 @@ namespace MusicXml.Unit.Tests
 
 			var part = _scoreWithStaffValues.Parts[0];
 			var measure = part.Measures[knownMeasureWithLyric];
-			var note = measure.Notes[knownNoteWithLyric];
+			var note = measure.MeasureElements[knownNoteWithLyric].Element as Note;
 			var lyric = note.Lyric;
 
 			Assert.That(lyric, Is.Not.Null);
@@ -545,7 +472,7 @@ namespace MusicXml.Unit.Tests
 
 			var part = _scoreWithStaffValues.Parts[0];
 			var measure = part.Measures[knownMeasureWithLyric];
-			var note = measure.Notes[knownNoteWithLyric];
+			var note = measure.MeasureElements[knownNoteWithLyric].Element as Note;
 			var lyric = note.Lyric;
 
 			const Syllabic knownSyllabic = Syllabic.Single;
@@ -561,7 +488,7 @@ namespace MusicXml.Unit.Tests
 
 			var part = _scoreWithStaffValues.Parts[0];
 			var measure = part.Measures[knownMeasureWithLyric];
-			var note = measure.Notes[knownNoteWithLyric];
+			var note = measure.MeasureElements[knownNoteWithLyric].Element as Note;
 			var lyric = note.Lyric;
 
 			const string knownLyricText = "Im";
@@ -575,7 +502,7 @@ namespace MusicXml.Unit.Tests
 			const int knownMeasureContainingRest = 0;
 			var part = _scoreWithStaffValues.Parts[0];
 			var measure = part.Measures[knownMeasureContainingRest];
-			var note = measure.Notes[0];
+			var note = measure.MeasureElements[0].Element as Note;
 
 			Assert.That(note.IsRest, Is.True);
 		}
@@ -586,7 +513,7 @@ namespace MusicXml.Unit.Tests
 			const int knownMeasureContainingRest = 0;
 			var part = _scoreWithStaffValues.Parts[0];
 			var measure = part.Measures[knownMeasureContainingRest];
-			var note = measure.Notes[0];
+			var note = measure.MeasureElements[0].Element as Note;
 
 			Assert.That(note.Pitch, Is.Null);
 		}

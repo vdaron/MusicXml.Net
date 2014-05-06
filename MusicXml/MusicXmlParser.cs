@@ -88,59 +88,34 @@ namespace MusicXml
 
 							var childNodes = measureNode.ChildNodes;
 
-							var postion = 0;
-
 							foreach (XmlNode node in childNodes)
 							{
+								MeasureElement measureElement = null;
+
 								if (node.Name == "note")
 								{
 									var newNote = GetNote(node);
-									
-									measure.Notes.Add(newNote);
-
-									if (newNote.Staff == 1 && !newNote.IsRest)
-									{
-										
-										if (measure.UpperStaffNotesInOrderOfTime.ContainsKey(postion))
-										{
-											var notesAtPosition = measure.UpperStaffNotesInOrderOfTime[postion];
-
-											var indexToInsert = 0;
-
-											for (var i = 0; i < notesAtPosition.Count; i++)
-											{
-												var note = notesAtPosition[i];
-												if (note.Pitch.Octave < newNote.Pitch.Octave)
-												{
-													indexToInsert = i;
-												}
-											}
-
-											notesAtPosition.Insert(indexToInsert, newNote);
-										}
-										else
-										{
-											measure.UpperStaffNotesInOrderOfTime.Add(postion, 
-												new List<Note>
-												{
-													newNote
-												});
-										}
-									}
-
-									postion += newNote.Duration;
+									measureElement = new MeasureElement();
+									measureElement.Type = MeasureElementType.Note;
+									measureElement.Element = newNote;
 								}
-
-								if (node.Name == "backup")
+								else if (node.Name == "backup")
 								{
-									postion -= GetDuration(node);
+									measureElement = new MeasureElement();
+									measureElement.Type = MeasureElementType.Backup;
+									measureElement.Element = null;
 								}
-								if (node.Name == "forward")
+								else if (node.Name == "forward")
 								{
-									postion += GetDuration(node);
+									measureElement = new MeasureElement();
+									measureElement.Type = MeasureElementType.Forward;
+									measureElement.Element = null;
 								}
+
+								if (measureElement != null)
+									measure.MeasureElements.Add(measureElement);
 							}
-
+							
 							part.Measures.Add(measure);
 						}
 					}

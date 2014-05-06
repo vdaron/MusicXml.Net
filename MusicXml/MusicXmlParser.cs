@@ -109,7 +109,7 @@ namespace MusicXml
 								{
 									measureElement = new MeasureElement();
 									measureElement.Type = MeasureElementType.Forward;
-									measureElement.Element = new Forward();
+									measureElement.Element = GetForwardElement(node);
 								}
 
 								if (measureElement != null)
@@ -123,6 +123,20 @@ namespace MusicXml
 			}
 
 			return score;
+		}
+
+		private static Forward GetForwardElement(XmlNode node)
+		{
+			var forward = new Forward();
+
+			var forwardNode = node.SelectSingleNode("duration");
+
+			if (forwardNode != null)
+			{
+				forward.Duration = Convert.ToInt32(forwardNode.InnerText);
+			}
+
+			return forward;
 		}
 
 		private static Backup GetBackupElement(XmlNode node)

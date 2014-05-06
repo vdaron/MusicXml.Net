@@ -547,11 +547,29 @@ namespace MusicXml.Unit.Tests
 		[Test]
 		public void Forward_is_not_null()
 		{
-			var part = _scoreWithStaffValues.Parts[1];
-			var measure = part.Measures[1];
-			var forward = measure.MeasureElements[6].Element;
+			const int partWithForward = 1;
+			const int measureWithForward = 1;
+			const int forwardMeasureElement = 6;
+			var part = _scoreWithStaffValues.Parts[partWithForward];
+			var measure = part.Measures[measureWithForward];
+			
+			var forward = measure.MeasureElements[forwardMeasureElement].Element;
 
 			Assert.That(forward, Is.Not.Null);
+		}
+
+		[Test]
+		public void Populates_forward_duration()
+		{
+			const int partWithForward = 1;
+			const int measureWithForward = 1;
+			const int forwardMeasureElement = 6;
+
+			var part = _scoreWithStaffValues.Parts[partWithForward];
+			var measure = part.Measures[measureWithForward];
+			var forward = measure.MeasureElements[forwardMeasureElement].Element as Forward;
+
+			Assert.That(forward.Duration, Is.EqualTo(8));
 		}
 	}
 }

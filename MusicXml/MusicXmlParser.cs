@@ -102,7 +102,8 @@ namespace MusicXml
 								{
 									measureElement = new MeasureElement();
 									measureElement.Type = MeasureElementType.Backup;
-									measureElement.Element = null;
+
+									measureElement.Element = GetBackupElement(node);
 								}
 								else if (node.Name == "forward")
 								{
@@ -122,6 +123,11 @@ namespace MusicXml
 			}
 
 			return score;
+		}
+
+		private static Backup GetBackupElement(XmlNode node)
+		{
+			return new Backup();
 		}
 
 		private static Note GetNote(XmlNode noteNode)
@@ -367,5 +373,10 @@ namespace MusicXml
 				return streamReader.ReadToEnd();
 			}
 		}
+	}
+
+	internal class Backup
+	{
+		public int Duration { get; set; }
 	}
 }

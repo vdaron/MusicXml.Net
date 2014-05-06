@@ -517,5 +517,18 @@ namespace MusicXml.Unit.Tests
 
 			Assert.That(note.Pitch, Is.Null);
 		}
+
+		[Test]
+		public void Backup_element_is_not_null()
+		{
+			const int knownBackupElement = 1;
+			const int knownPartWithBackup = 1;
+			var part = _scoreWithStaffValues.Parts[knownPartWithBackup];
+			var measure = part.Measures[0];
+			var element = measure.MeasureElements[knownBackupElement].Element;
+
+			Assert.That(element, Is.Not.Null);
+		}
+		
 	}
 }

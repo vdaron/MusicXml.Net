@@ -1,5 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.IO;
 using System.Text;
 using System.Xml;
@@ -123,15 +122,6 @@ namespace MusicXml
 			}
 
 			return score;
-		}
-
-		private static int GetDuration(XmlNode node)
-		{
-			var durationNode = node.SelectSingleNode("duration");
-			if (durationNode != null)
-				return Convert.ToInt32(durationNode.InnerText);
-
-			return 0;
 		}
 
 		private static Note GetNote(XmlNode noteNode)

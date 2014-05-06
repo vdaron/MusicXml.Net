@@ -529,6 +529,19 @@ namespace MusicXml.Unit.Tests
 
 			Assert.That(element, Is.Not.Null);
 		}
-		
+
+		[Test]
+		public void Populates_backup_duration()
+		{
+			const int knownBackupElement = 1;
+			const int knownPartWithBackup = 1;
+			var part = _scoreWithStaffValues.Parts[knownPartWithBackup];
+			var measure = part.Measures[0];
+			var backup = measure.MeasureElements[knownBackupElement].Element as Backup;
+
+			const int knownBackupDuration = 2;
+
+			Assert.That(backup.Duration, Is.EqualTo(knownBackupDuration));
+		}
 	}
 }

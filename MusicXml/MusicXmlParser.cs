@@ -127,7 +127,16 @@ namespace MusicXml
 
 		private static Backup GetBackupElement(XmlNode node)
 		{
-			return new Backup();
+			var backup = new Backup();
+
+			var backupNode = node.SelectSingleNode("duration");
+
+			if (backupNode != null)
+			{
+				backup.Duration = Convert.ToInt32(backupNode.InnerText);
+			}
+
+			return backup;
 		}
 
 		private static Note GetNote(XmlNode noteNode)
@@ -373,10 +382,5 @@ namespace MusicXml
 				return streamReader.ReadToEnd();
 			}
 		}
-	}
-
-	internal class Backup
-	{
-		public int Duration { get; set; }
 	}
 }

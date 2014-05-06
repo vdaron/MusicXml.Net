@@ -58,6 +58,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Backup.cs" />
     <Compile Include="Domain\MeasureElement.cs" />
     <Compile Include="Domain\Clef.cs" />
     <Compile Include="Domain\Encoding.cs" />

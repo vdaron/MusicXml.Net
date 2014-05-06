@@ -109,7 +109,7 @@ namespace MusicXml
 								{
 									measureElement = new MeasureElement();
 									measureElement.Type = MeasureElementType.Forward;
-									measureElement.Element = null;
+									measureElement.Element = new Forward();
 								}
 
 								if (measureElement != null)

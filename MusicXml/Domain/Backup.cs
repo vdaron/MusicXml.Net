@@ -1,4 +1,4 @@
-﻿namespace MusicXml
+namespace MusicXml.Domain
 {
 	public class Backup
 	{

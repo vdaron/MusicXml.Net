@@ -543,5 +543,15 @@ namespace MusicXml.Unit.Tests
 
 			Assert.That(backup.Duration, Is.EqualTo(knownBackupDuration));
 		}
+		
+		[Test]
+		public void Forward_is_not_null()
+		{
+			var part = _scoreWithStaffValues.Parts[1];
+			var measure = part.Measures[1];
+			var forward = measure.MeasureElements[6].Element;
+
+			Assert.That(forward, Is.Not.Null);
+		}
 	}
 }

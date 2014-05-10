@@ -94,22 +94,15 @@ namespace MusicXml
 								if (node.Name == "note")
 								{
 									var newNote = GetNote(node);
-									measureElement = new MeasureElement();
-									measureElement.Type = MeasureElementType.Note;
-									measureElement.Element = newNote;
+									measureElement = new MeasureElement {Type = MeasureElementType.Note, Element = newNote};
 								}
 								else if (node.Name == "backup")
 								{
-									measureElement = new MeasureElement();
-									measureElement.Type = MeasureElementType.Backup;
-
-									measureElement.Element = GetBackupElement(node);
+									measureElement = new MeasureElement {Type = MeasureElementType.Backup, Element = GetBackupElement(node)};
 								}
 								else if (node.Name == "forward")
 								{
-									measureElement = new MeasureElement();
-									measureElement.Type = MeasureElementType.Forward;
-									measureElement.Element = GetForwardElement(node);
+									measureElement = new MeasureElement {Type = MeasureElementType.Forward, Element = GetForwardElement(node)};
 								}
 
 								if (measureElement != null)

@@ -1,0 +1,17 @@
+<?xml version="1.0"?>
+<package >
+  <metadata>
+    <id>MusicXml.NET</id>
+	<title>MusicXml.NET</title>
+    <version>$version$</version>
+    <authors>Vincent DARON, Steven SOLOMON</authors>
+    <owners>Vincent DARON, Steven SOLOMON</owners>
+    <licenseUrl>https://github.com/vdaron/MusicXml.Net/blob/develop/LICENCE</licenseUrl>
+    <projectUrl>https://github.com/vdaron/MusicXml.Net/</projectUrl>
+    <requireLicenseAcceptance>false</requireLicenseAcceptance>
+    <description>$description$</description>
+    <releaseNotes>First official release.</releaseNotes>
+    <copyright>Copyright 2014 - Vincent DARON, Steven SOLOMON</copyright>
+    <tags>MusicXml</tags>
+  </metadata>
+</package>

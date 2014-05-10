@@ -53,27 +53,28 @@
     <CodeAnalysisRuleSet>AllRules.ruleset</CodeAnalysisRuleSet>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="mindtouch.dream">
-      <HintPath>..\lib\mindtouch.dream.dll</HintPath>
-    </Reference>
     <Reference Include="System" />
     <Reference Include="System.Data" />
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Clef.cs" />
-    <Compile Include="Encoding.cs" />
-    <Compile Include="Time.cs" />
-    <Compile Include="Key.cs" />
-    <Compile Include="MeasureAttributes.cs" />
-    <Compile Include="Pitch.cs" />
-    <Compile Include="Lyric.cs" />
-    <Compile Include="Note.cs" />
-    <Compile Include="Measure.cs" />
-    <Compile Include="Identification.cs" />
-    <Compile Include="Part.cs" />
+    <Compile Include="Domain\Backup.cs" />
+    <Compile Include="Domain\Forward.cs" />
+    <Compile Include="Domain\MeasureElement.cs" />
+    <Compile Include="Domain\Clef.cs" />
+    <Compile Include="Domain\Encoding.cs" />
+    <Compile Include="Domain\Identification.cs" />
+    <Compile Include="Domain\Key.cs" />
+    <Compile Include="Domain\Lyric.cs" />
+    <Compile Include="Domain\Measure.cs" />
+    <Compile Include="Domain\MeasureAttributes.cs" />
+    <Compile Include="Domain\Note.cs" />
+    <Compile Include="Domain\Part.cs" />
+    <Compile Include="Domain\Pitch.cs" />
+    <Compile Include="Domain\Score.cs" />
+    <Compile Include="Domain\Time.cs" />
+    <Compile Include="MusicXmlParser.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="XScore.cs" />
   </ItemGroup>
   <ItemGroup>
     <BootstrapperPackage Include="Microsoft.Net.Client.3.5">

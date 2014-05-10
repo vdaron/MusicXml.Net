@@ -123,7 +123,7 @@
 	</part-list>
 	<!--=========================================================-->
 	<part id="P1">
-		<measure implicit="yes" number="0" width="198">
+		<measure implicit="yes" number="0">
 			<print page-number="2">
 				<system-layout>
 					<system-margins>

@@ -4,11 +4,11 @@ using System.Runtime.InteropServices;
 // General Information about an assembly is controlled through the following 
 // set of attributes. Change these attribute values to modify the information
 // associated with an assembly.
-[assembly: AssemblyTitle("MusicXml")]
+[assembly: AssemblyTitle("MusicXml.NET")]
 [assembly: AssemblyDescription("MusicXML file parser for .NET")]
 [assembly: AssemblyConfiguration("")]
 [assembly: AssemblyCompany("")]
-[assembly: AssemblyProduct("MusicXml")]
+[assembly: AssemblyProduct("MusicXml.NET")]
 [assembly: AssemblyCopyright("Copyright © Vincent DARON - Steven Solomon 2008-2014")]
 [assembly: AssemblyTrademark("")]
 [assembly: AssemblyCulture("")]

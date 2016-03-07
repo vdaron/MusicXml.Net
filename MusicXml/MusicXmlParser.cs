@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Globalization;
 using System.IO;
 using System.Text;
 using System.Xml;
@@ -51,8 +52,9 @@ namespace MusicXml
 							if (measureNode.Attributes != null)
 							{
 								var measureWidthAttribute = measureNode.Attributes["width"];
-								if (measureWidthAttribute != null)
-									measure.Width = Convert.ToInt32(measureWidthAttribute.InnerText);
+								decimal w;
+								if (measureWidthAttribute != null && decimal.TryParse(measureWidthAttribute.InnerText, NumberStyles.AllowDecimalPoint, CultureInfo.InvariantCulture,out w))
+									measure.Width = w;
 							}
 
 							var attributesNode = measureNode.SelectSingleNode("attributes");

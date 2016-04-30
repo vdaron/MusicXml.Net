@@ -1,9 +1,9 @@
-﻿using System;
+using MusicXml.Domain;
+using System;
 using System.Globalization;
 using System.IO;
 using System.Text;
 using System.Xml;
-using MusicXml.Domain;
 using Encoding = MusicXml.Domain.Encoding;
 
 namespace MusicXml
@@ -163,6 +163,10 @@ namespace MusicXml
 			var durationNode = noteNode.SelectSingleNode("duration");
 			if (durationNode != null)
 				note.Duration = Convert.ToInt32(durationNode.InnerText);
+
+            var accidental = noteNode.SelectSingleNode("accidental");
+            if (accidental != null)
+                note.Accidental = accidental.InnerText;
 
 			note.Lyric = GetLyric(noteNode);
 

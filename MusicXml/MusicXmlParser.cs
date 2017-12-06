@@ -1,8 +1,9 @@
-﻿using System;
+using MusicXml.Domain;
+using System;
+using System.Globalization;
 using System.IO;
 using System.Text;
 using System.Xml;
-using MusicXml.Domain;
 using Encoding = MusicXml.Domain.Encoding;
 
 namespace MusicXml
@@ -51,8 +52,9 @@ namespace MusicXml
 							if (measureNode.Attributes != null)
 							{
 								var measureWidthAttribute = measureNode.Attributes["width"];
-								if (measureWidthAttribute != null)
-									measure.Width = Convert.ToInt32(measureWidthAttribute.InnerText);
+								decimal w;
+								if (measureWidthAttribute != null && decimal.TryParse(measureWidthAttribute.InnerText, NumberStyles.AllowDecimalPoint, CultureInfo.InvariantCulture,out w))
+									measure.Width = w;
 							}
 
 							var attributesNode = measureNode.SelectSingleNode("attributes");
@@ -161,6 +163,10 @@ namespace MusicXml
 			var durationNode = noteNode.SelectSingleNode("duration");
 			if (durationNode != null)
 				note.Duration = Convert.ToInt32(durationNode.InnerText);
+
+			var accidental = noteNode.SelectSingleNode("accidental");
+			if (accidental != null)
+				note.Accidental = accidental.InnerText;
 
 			note.Lyric = GetLyric(noteNode);
 

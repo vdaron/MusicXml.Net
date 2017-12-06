@@ -116,7 +116,7 @@
 	</part-list>
 	<!--=========================================================-->
 	<part id="P1">
-		<measure implicit="yes" number="0" width="199">
+		<measure implicit="yes" number="0" width="199.25">
 			<print page-number="2">
 				<system-layout>
 					<system-margins>

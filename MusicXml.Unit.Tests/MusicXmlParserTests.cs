@@ -571,5 +571,17 @@ namespace MusicXml.Unit.Tests
 
 			Assert.That(forward.Duration, Is.EqualTo(8));
 		}
+
+		[Test]
+		public void Measure_with_decimal_width_attribute()
+		{
+			var scoreWithoutMeasureWidthAttribute = MusicXmlParser.GetScore(@"TestData\MusicXmlWithChords.xml");
+
+			var part = scoreWithoutMeasureWidthAttribute.Parts[0];
+
+			var measure = part.Measures[0];
+
+			Assert.That(measure.Width, Is.EqualTo(199.25));
+		}
 	}
 }

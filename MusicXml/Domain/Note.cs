@@ -29,6 +29,6 @@ namespace MusicXml.Domain
 
 		public bool IsRest { get; internal set; }
 		
-        	public string Accidental { get; internal set; }
+        public string Accidental { get; internal set; }
     }
 }

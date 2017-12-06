@@ -164,9 +164,9 @@ namespace MusicXml
 			if (durationNode != null)
 				note.Duration = Convert.ToInt32(durationNode.InnerText);
 
-            var accidental = noteNode.SelectSingleNode("accidental");
-            if (accidental != null)
-                note.Accidental = accidental.InnerText;
+			var accidental = noteNode.SelectSingleNode("accidental");
+			if (accidental != null)
+				note.Accidental = accidental.InnerText;
 
 			note.Lyric = GetLyric(noteNode);
 

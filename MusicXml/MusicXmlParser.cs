@@ -13,14 +13,14 @@ namespace MusicXml
 		public static Score GetScore(string filename)
 		{
 			using (var fs = File.OpenRead(filename)) {
-				XmlDocument document = GetXmlDocument(fs);
+				var document = GetXmlDocument(fs);
 				return GetScore(document);
 			}
 		}
 
 		public static Score GetScoreFromString(string str)
 		{
-			XmlDocument document = GetXmlDocument(str);
+			var document = GetXmlDocument(str);
 			return GetScore(document);
 		}
 

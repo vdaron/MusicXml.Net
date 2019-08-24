@@ -12,8 +12,26 @@ namespace MusicXml
 	{
 		public static Score GetScore(string filename)
 		{
-			var document = GetXmlDocument(filename);
+			using (var fs = File.OpenRead(filename)) {
+				XmlDocument document = GetXmlDocument(fs);
+				return GetScore(document);
+			}
+		}
 
+		public static Score GetScoreFromString(string str)
+		{
+			XmlDocument document = GetXmlDocument(str);
+			return GetScore(document);
+		}
+
+		public static Score GetScore(Stream str)
+		{
+			var document = GetXmlDocument(str);
+			return GetScore(document);
+		}
+
+		private static Score GetScore(XmlDocument document)
+		{
 			var score = new Score();
 
 			var movementTitleNode = document.SelectSingleNode("score-partwise/movement-title");
@@ -376,23 +394,20 @@ namespace MusicXml
 			return softwareStringBuilder.ToString();
 		}
 
-		private static XmlDocument GetXmlDocument(string filename)
+		private static XmlDocument GetXmlDocument(string xml)
 		{
 			var document = new XmlDocument();
 
-			var xml = GetFileContents(filename);
 			document.XmlResolver = null;
 			document.LoadXml(xml);
 
 			return document;
 		}
 
-		private static string GetFileContents(string filename)
+		private static XmlDocument GetXmlDocument(Stream stream)
 		{
-			using (var fileStream = new FileStream(filename, FileMode.Open))
-			using (var streamReader = new StreamReader(fileStream))
-			{
-				return streamReader.ReadToEnd();
+			using (var sr = new StreamReader(stream)) {
+				return GetXmlDocument(sr.ReadToEnd());
 			}
 		}
 	}

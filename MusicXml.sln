@@ -1,15 +1,15 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 2012
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MusicXml", "MusicXML\MusicXml.csproj", "{42ACDD70-26DA-4737-B490-282A21B170E6}"
-EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MusicXml.Unit.Tests", "MusicXml.Unit.Tests\MusicXml.Unit.Tests.csproj", "{CF6E7B21-CEAD-4048-A384-3C9EBBD0CB4A}"
-EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{32BD3EE8-4990-46EF-AD92-D1DC4380B0DC}"
 	ProjectSection(SolutionItems) = preProject
 		LICENCE = LICENCE
 		README.md = README.md
 	EndProjectSection
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MusicXml", "MusicXml\MusicXml.csproj", "{EE851398-4852-412C-8301-223C519FA57D}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MusicXml.Tests", "MusicXml.Tests\MusicXml.Tests.csproj", "{1E473D8E-B7B5-4AEC-BA8A-10FE96A4B618}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -17,14 +17,14 @@ Global
 		Release|Any CPU = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
-		{42ACDD70-26DA-4737-B490-282A21B170E6}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{42ACDD70-26DA-4737-B490-282A21B170E6}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{42ACDD70-26DA-4737-B490-282A21B170E6}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{42ACDD70-26DA-4737-B490-282A21B170E6}.Release|Any CPU.Build.0 = Release|Any CPU
-		{CF6E7B21-CEAD-4048-A384-3C9EBBD0CB4A}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{CF6E7B21-CEAD-4048-A384-3C9EBBD0CB4A}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{CF6E7B21-CEAD-4048-A384-3C9EBBD0CB4A}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{CF6E7B21-CEAD-4048-A384-3C9EBBD0CB4A}.Release|Any CPU.Build.0 = Release|Any CPU
+		{EE851398-4852-412C-8301-223C519FA57D}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{EE851398-4852-412C-8301-223C519FA57D}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{EE851398-4852-412C-8301-223C519FA57D}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{EE851398-4852-412C-8301-223C519FA57D}.Release|Any CPU.Build.0 = Release|Any CPU
+		{1E473D8E-B7B5-4AEC-BA8A-10FE96A4B618}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{1E473D8E-B7B5-4AEC-BA8A-10FE96A4B618}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{1E473D8E-B7B5-4AEC-BA8A-10FE96A4B618}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{1E473D8E-B7B5-4AEC-BA8A-10FE96A4B618}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

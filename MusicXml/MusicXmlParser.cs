@@ -18,6 +18,14 @@ namespace MusicXml
 			}
 		}
 
+		public static Score GetScore(string filename, System.Text.Encoding encoding) {
+			using (var fs = File.OpenRead(filename)) {
+				var sr = new StreamReader(fs,encoding);
+                var document = GetXmlDocument(sr.ReadToEnd());
+                return GetScore(document);
+            }
+		}
+
 		public static Score GetScoreFromString(string str)
 		{
 			var document = GetXmlDocument(str);

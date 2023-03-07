@@ -1,14 +1,6 @@
 on:
   workflow_dispatch:
-    inputs:
-      version:
-        description: 'Version Number'
-        default: '0.0.0.0'
-        required: true
-        type: string
-      create-release:
-        type: boolean
-        description: "Create Release"
+    inputs: {}
 
 jobs:
   release:
@@ -28,7 +20,7 @@ jobs:
     - uses: actions/checkout@v1
 
     - name: restore
-      run: dotnet restore MusicXml -r ${{ matrix.os.arch }}
+      run: dotnet restore MusicXml.Tests -r ${{ matrix.os.arch }}
 
     - name: unit test
-      uses: RachelGanonNew/Run-All-.Net-Unit-Test@main
+      run: dotnet test MusicXml.Tests

@@ -4,7 +4,6 @@ using System.Globalization;
 using System.IO;
 using System.Text;
 using System.Xml;
-using Encoding = MusicXml.Domain.Encoding;
 
 namespace MusicXml
 {
@@ -21,7 +20,7 @@ namespace MusicXml
 		public static Score GetScore(string filename, System.Text.Encoding encoding) {
 			using (var fs = File.OpenRead(filename)) {
 				var sr = new StreamReader(fs,encoding);
-                var document = GetXmlDocument(sr.ReadToEnd());
+                var document = GetXmlDocumentFromString(sr.ReadToEnd());
                 return GetScore(document);
             }
 		}
@@ -37,6 +36,12 @@ namespace MusicXml
 			var document = GetXmlDocument(str);
 			return GetScore(document);
 		}
+
+		public static Score GetScore(Stream str, System.Text.Encoding encoding) {
+            var sr = new StreamReader(str, encoding);
+            var document = GetXmlDocumentFromString(sr.ReadToEnd());
+			return GetScore(document);
+        }
 		
 		private static Score GetScore(XmlDocument document)
 		{
@@ -365,11 +370,11 @@ namespace MusicXml
 			return null;
 		}
 
-		private static Encoding GetEncoding(XmlNode identificationNode)
+		private static MusicXml.Domain.Encoding GetEncoding(XmlNode identificationNode)
 		{
 			var encodingNode = identificationNode.SelectSingleNode("encoding");
 
-			var encoding = new Encoding();
+			var encoding = new MusicXml.Domain.Encoding();
 
 			if (encodingNode != null)
 			{

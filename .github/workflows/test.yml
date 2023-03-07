@@ -3,7 +3,7 @@ on:
     inputs: {}
 
 jobs:
-  release:
+  test:
     runs-on: ${{ matrix.os.runs-on }}
 
     strategy:

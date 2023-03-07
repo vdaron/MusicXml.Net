@@ -1,0 +1,26 @@
+on:
+  workflow_dispatch:
+    inputs: {}
+
+jobs:
+  test:
+    runs-on: ${{ matrix.os.runs-on }}
+
+    strategy:
+      matrix:
+        os: 
+          - runs-on: windows-latest
+            arch: win-x64
+          - runs-on: macos-latest
+            arch: osx-x64
+          - runs-on: ubuntu-latest
+            arch: linux-x64
+          
+    steps:
+    - uses: actions/checkout@v1
+
+    - name: restore
+      run: dotnet restore MusicXml.Tests -r ${{ matrix.os.arch }}
+
+    - name: unit test
+      run: dotnet test MusicXml.Tests

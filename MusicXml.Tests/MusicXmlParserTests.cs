@@ -54,7 +54,7 @@ namespace MusicXml.Unit.Tests
 		{
 			const string knownEncodingDescription = "This is a sample description\nacross multiple lines\n";
 
-			Assert.That(_scoreWithStaffValues.Identification.Encoding.Description, Is.EqualTo(knownEncodingDescription));
+			Assert.That(_scoreWithStaffValues.Identification.Encoding.Description.Replace(Environment.NewLine,"\n"), Is.EqualTo(knownEncodingDescription));
 		}
 
 		[Test]
@@ -70,7 +70,7 @@ namespace MusicXml.Unit.Tests
 		{
 			const string knownEncodingSoftware = "Finale 2011 for Windows\nDolet 6.0 for Finale\n";
 
-			Assert.That(_scoreWithStaffValues.Identification.Encoding.Software, Is.EqualTo(knownEncodingSoftware));
+			Assert.That(_scoreWithStaffValues.Identification.Encoding.Software.Replace(Environment.NewLine,"\n"), Is.EqualTo(knownEncodingSoftware));
 		}
 
 		[Test]

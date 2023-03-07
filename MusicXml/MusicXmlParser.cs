@@ -407,9 +407,12 @@ namespace MusicXml
 
 		private static XmlDocument GetXmlDocument(Stream stream)
 		{
+            var document = new XmlDocument();
+            document.XmlResolver = null;
 			using (var sr = new StreamReader(stream)) {
-				return GetXmlDocument(sr.ReadToEnd());
+                document.LoadXml(sr.ReadToEnd());
 			}
+			return document;
 		}
 
 		private static string GetFileContents(string filename)

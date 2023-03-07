@@ -1,0 +1,34 @@
+on:
+  workflow_dispatch:
+    inputs:
+      version:
+        description: 'Version Number'
+        default: '0.0.0.0'
+        required: true
+        type: string
+      create-release:
+        type: boolean
+        description: "Create Release"
+
+jobs:
+  release:
+    runs-on: ${{ matrix.os.runs-on }}
+
+    strategy:
+      matrix:
+        os: 
+          - runs-on: windows-latest
+            arch: win-x64
+          - runs-on: macos-latest
+            arch: osx-x64
+          - runs-on: ubuntu-latest
+            arch: linux-x64
+          
+    steps:
+    - uses: actions/checkout@v1
+
+    - name: restore
+      run: dotnet restore MusicXml -r ${{ matrix.os.arch }}
+
+    - name: unit test
+      uses: RachelGanonNew/Run-All-.Net-Unit-Test@main

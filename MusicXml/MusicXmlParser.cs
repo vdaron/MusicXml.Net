@@ -4,7 +4,6 @@ using System.Globalization;
 using System.IO;
 using System.Text;
 using System.Xml;
-using Encoding = MusicXml.Domain.Encoding;
 
 namespace MusicXml
 {
@@ -12,22 +11,17 @@ namespace MusicXml
 	{
 		public static Score GetScore(string filename)
 		{
-			using (var fs = File.OpenRead(filename)) {
-				var document = GetXmlDocument(fs);
-				return GetScore(document);
-			}
+			return GetScore(GetXmlDocumentFromFile(filename));
 		}
 
 		public static Score GetScoreFromString(string str)
 		{
-			var document = GetXmlDocumentFromString(str);
-			return GetScore(document);
+			return GetScore(GetXmlDocumentFromString(str));
 		}
 
 		public static Score GetScore(Stream str)
 		{
-			var document = GetXmlDocument(str);
-			return GetScore(document);
+			return GetScore(GetXmlDocument(str));
 		}
 		
 		private static Score GetScore(XmlDocument document)
@@ -357,11 +351,11 @@ namespace MusicXml
 			return null;
 		}
 
-		private static Encoding GetEncoding(XmlNode identificationNode)
+		private static MusicXml.Domain.Encoding GetEncoding(XmlNode identificationNode)
 		{
 			var encodingNode = identificationNode.SelectSingleNode("encoding");
 
-			var encoding = new Encoding();
+			var encoding = new MusicXml.Domain.Encoding();
 
 			if (encodingNode != null)
 			{
@@ -393,44 +387,27 @@ namespace MusicXml
 
 			return softwareStringBuilder.ToString();
 		}
-
-		private static XmlDocument GetXmlDocument(string filename)
-		{
-			var document = new XmlDocument();
-
-			var xml = GetFileContents(filename);
-			document.XmlResolver = null;
-			document.LoadXml(xml);
-
-			return document;
-		}
-
+		
 		private static XmlDocument GetXmlDocumentFromString(string str) 
 		{
-            var document = new XmlDocument();
+			var document = new XmlDocument();
             document.XmlResolver = null;
 			document.LoadXml(str);
 			return document;
-
-        }
-
+		}
+		private static XmlDocument GetXmlDocumentFromFile(string fileName)
+		{
+			var document = new XmlDocument();
+			document.XmlResolver = null;
+			document.Load(fileName);
+			return document;
+		}
 		private static XmlDocument GetXmlDocument(Stream stream)
 		{
             var document = new XmlDocument();
             document.XmlResolver = null;
-			using (var sr = new StreamReader(stream)) {
-                document.LoadXml(sr.ReadToEnd());
-			}
+            document.Load(stream);
 			return document;
-		}
-
-		private static string GetFileContents(string filename)
-		{
-			using (var fileStream = new FileStream(filename, FileMode.Open))
-			using (var streamReader = new StreamReader(fileStream))
-			{
-				return streamReader.ReadToEnd();
-			}
 		}
 	}
 }

@@ -14,6 +14,14 @@ namespace MusicXml
 			return GetScore(GetXmlDocumentFromFile(filename));
 		}
 
+		public static Score GetScore(string filename, System.Text.Encoding encoding) {
+			using (var fs = File.OpenRead(filename)) {
+				var sr = new StreamReader(fs,encoding);
+                var document = GetXmlDocumentFromString(sr.ReadToEnd());
+                return GetScore(document);
+            }
+		}
+
 		public static Score GetScoreFromString(string str)
 		{
 			return GetScore(GetXmlDocumentFromString(str));
@@ -23,6 +31,12 @@ namespace MusicXml
 		{
 			return GetScore(GetXmlDocument(str));
 		}
+
+		public static Score GetScore(Stream str, System.Text.Encoding encoding) {
+            var sr = new StreamReader(str, encoding);
+            var document = GetXmlDocumentFromString(sr.ReadToEnd());
+			return GetScore(document);
+        }
 		
 		private static Score GetScore(XmlDocument document)
 		{

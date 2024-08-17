@@ -30,6 +30,8 @@ namespace MusicXml.Domain
 		public bool IsRest { get; internal set; }
 
 		public bool IsGrace { get; internal set; }
+
+		public Tie Tie { get; internal set; }
 		
         public string Accidental { get; internal set; }
     }

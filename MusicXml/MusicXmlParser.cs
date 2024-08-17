@@ -196,9 +196,9 @@ namespace MusicXml
 			if (restNode != null)
 				note.IsRest = true;
 
-            var graceNode = noteNode.SelectSingleNode("grace");
-            if (graceNode != null)
-                note.IsGrace = true;
+			var graceNode = noteNode.SelectSingleNode("grace");
+			if (graceNode != null) 
+				note.IsGrace = true;
 			
             return note;
 		}

@@ -28,6 +28,7 @@ namespace MusicXml.Domain
 		public bool IsChordTone { get; internal set; }
 
 		public bool IsRest { get; internal set; }
+
 		public bool IsGrace { get; internal set; }
 		
         public string Accidental { get; internal set; }

@@ -199,8 +199,8 @@ namespace MusicXml
 			var graceNode = noteNode.SelectSingleNode("grace");
 			if (graceNode != null) 
 				note.IsGrace = true;
-			
-            return note;
+
+			return note;
 		}
 
 		private static Pitch GetPitch(XmlNode noteNode)

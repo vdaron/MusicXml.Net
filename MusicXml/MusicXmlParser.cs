@@ -202,12 +202,14 @@ namespace MusicXml
 
 			var tieNode = noteNode.SelectSingleNode("tie");
 			if(tieNode?.Attributes != null)
+			{
 				note.Tie = tieNode.Attributes["type"]?.Value switch
 				{
 					"start" => Tie.Start,
 					"stop" => Tie.Stop,
 					_ => Tie.NotTied
 				};
+			}
 
 			return note;
 		}
